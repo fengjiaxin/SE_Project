@@ -10,9 +10,13 @@
 <body>
 	<s:form action="sign_in" method="post">
 		<s:textfield name="UserName" label="用户名："></s:textfield>
-		<s:input type="password"
+		<s:input type="password" name="Password" label="密码："></s:input>
+		<s:radio list="#{'1':'学生','0':'教师'}" name="Status" value='1'></s:radio>
+		<s:submit value="登录"></s:submit>
 	</s:form>
 	
-	
+	<s:form action="toregister" method="post">
+		<s:submit value="注册"></s:submit>
+	</s:form>
 </body>
 </html>
