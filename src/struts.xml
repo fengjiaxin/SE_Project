@@ -8,9 +8,27 @@
 <struts>
 
     <package name="labrary" extends="struts-default">
-    
-   
-        
+	    <action name="sign_in" class="Action.MainAction" method="LoginAction">
+	         <result name="TeacherLogin">/Success.jsp</result>
+	         <result name="StudentLogin">/Success.jsp</result>
+	         <result name="Password_or_UsernameError">/NotExist.jsp</result>
+	         <result name="StudentLoginfail">/NotExist.jsp</result>
+	    </action>
+	
+	    <action name="toregister" class="Action.MainAction" method="ToRegister">
+	         <result name="TeacherRegister">/TeacherRegister.jsp</result>
+	         <result name="StudentRegister">/StudentRegister.jsp</result>
+	    </action>
+	    
+	    <action name="studentregister" class="Action.RegisterAction" method="RegisterAction">
+	         <result name="StudentRegisterSuccessed">/Success.jsp</result>
+	         <result name="StudentRegisterFail">/StudentRegister.jsp</result>
+        </action>   
+
+	    <action name="teacherregister" class="Action.RegisterAction" method="RegisterAction">
+	         <result name="TeacherRegisterSuccessed">/Success.jsp</result>
+	         <result name="TeacherRegisterFail">/TeacherRegister.jsp</result>
+        </action>          
     </package>
 
 
