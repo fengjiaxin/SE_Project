@@ -7,7 +7,7 @@
 <!-- START SNIPPET: xworkSample -->
 <struts>
 
-    <package name="default" extends="struts-default">
+    <package name="labrary" extends="struts-default">
     
    
         
