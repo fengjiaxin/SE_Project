@@ -8,7 +8,7 @@
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/css/background.css" />
 <title>Welcome</title>
 </head>
-<body>
+<body style="background-image:url('css/background.jpg')">
 
 	<div>
 		<s:form action="sign_in" method="post">

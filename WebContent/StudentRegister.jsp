@@ -18,8 +18,8 @@
 		<s:radio list="#{'1':'男','0':'女'}" name="Sex" value='1'></s:radio>
 		<s:textfield name="Age" label="年龄："></s:textfield>
 		<s:textfield name="Telephone" label="手机号："></s:textfield>
-		<s:select name="Specialty" label="专业:" headerKey="-1" headerValue="Select Specialty"
-		list="#{'计算机科学与技术', '信息安全', '物联网', '软件工程'}"  />
+		<s:select name="Specialty" label="专业:" headerKey="" headerValue="Select Specialty"
+		list="#{'1':'cs','2':'s','3':'net','4':'se'}"  />
 		<s:textfield name="Introduce" label="自我介绍："></s:textfield>
 		<s:submit value="注册"></s:submit>
 	</s:form>

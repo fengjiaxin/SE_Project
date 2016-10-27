@@ -7,7 +7,7 @@
 <!-- START SNIPPET: xworkSample -->
 <struts>
 
-    <package name="labrary" extends="struts-default">
+    <package name="default" namespace ="/" extends="struts-default">
 	    <action name="sign_in" class="Action.MainAction" method="LoginAction">
 	         <result name="TeacherLogin">/Success.jsp</result>
 	         <result name="StudentLogin">/Success.jsp</result>
@@ -20,15 +20,20 @@
 	         <result name="StudentRegister">/StudentRegister.jsp</result>
 	    </action>
 	    
-	    <action name="studentregister" class="Action.RegisterAction" method="RegisterAction">
-	         <result name="StudentRegisterSuccessed">/Success.jsp</result>
-	         <result name="StudentRegisterFail">/StudentRegister.jsp</result>
+	    <action name="studentregister" class="Action.RegisterAction" method="StudentRegisterAction">
+	         <result name="StudentRegisterSuccessed!">/Success.jsp</result>
+	         <result name="StudentRegisterFail!">/StudentRegister.jsp</result>
         </action>   
 
-	    <action name="teacherregister" class="Action.RegisterAction" method="RegisterAction">
-	         <result name="TeacherRegisterSuccessed">/Success.jsp</result>
-	         <result name="TeacherRegisterFail">/TeacherRegister.jsp</result>
-        </action>          
+	    <action name="teacherregister" class="Action.RegisterAction" method="TeacherRegisterAction">
+	         <result name="TeacherRegisterSuccessed!">/Success.jsp</result>
+	         <result name="TeacherRegisterFail!">/TeacherRegister.jsp</result>
+        </action>
+        
+        <action name="return" class="Action.MainAction" method="InitialPage">
+	         <result name="InitialPage">/welcome.jsp</result>
+	   
+        </action>         
     </package>
 
 

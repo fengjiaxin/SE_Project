@@ -133,34 +133,6 @@ public class RegisterAction {
 	 
 	 
 	 
-	 public String Check() throws Exception
-	 {
-		 if(getStatus()=="0")//满足条件说明是教师注册
-		 {
-			 DB SQL=new DB();
-			 String TeacherName="select* from teacher where user_name="+"'"+getUserName()+"'";
-			 ResultSet     RsN=SQL.executeQuery(TeacherName);
-			 if( RsN.next() )
-			 {
-				 return "TeacherNameExist";
-			 }
-			 return "TeacherRegistering";
-		 }
-		 //往下执行说明是学生注册
-		 else
-		 {
-			 DB SQL=new DB();
-			 String TeacherName="select* from student where user_name="+"'"+getUserName()+"'";
-			 ResultSet     RsN=SQL.executeQuery(TeacherName);
-			 if( RsN.next() )
-			 {
-				 return "StudentNameExist";
-			 }
-			 return "StudentRegistering";
-		 }
-	 }
-	 
-	 
 	 public String StudentRegisterAction()throws Exception
 	 {
 		
