@@ -2,13 +2,27 @@ package Action;
 
 import java.sql.ResultSet;
 
-import DBcon.DB;
+import javax.servlet.http.HttpServletRequest;
 
+import org.apache.struts2.ServletActionContext;
+
+import DBcon.DB;
+import Data.Student;
 public class MainAction {
 	 private String UserName;
 	 private String Password;
-	 private String   InStatus;
-	 private String   ReStatus;
+	 private int   InStatus;
+	 private int   ReStatus;
+	 private int Id;
+	 
+	 public void setId(int Id)
+	 {
+		 this.Id = Id;
+	 }
+	 public int getId()
+	 {
+		 return this.Id;
+	 }
 	 
 	 
 	 public void setUserName(String UserName)
@@ -31,39 +45,25 @@ public class MainAction {
 	 }
 	 
 	 
-	 public void setInStatus(String InStatus)
-	 {
-		 this.InStatus=InStatus;
-	 }
-	 public String getInStatus()
-	 {
-		 return this.InStatus;
-	 }
+	
 	 
 	 
-	 public void setReStatus(String ReStatus)
-	 {
-		 this.ReStatus=ReStatus;
-	 }
-	 public String getReStatus()
-	 {
-		 return this.ReStatus;
-	 }
-	 
+	
 	 
 	 public String LoginAction() throws Exception
 	 {
 		 DB SQL=new DB();
-		 if(getInStatus()=="0")//老师登陆
+		 if(getInStatus()==0)//老师登陆
 		 {
 			
-			 String TeacherName="select password from teacher where user_name="+"'"+getUserName()+"'";
+			 String TeacherName="select * from teacher where user_name="+"'"+getUserName()+"'";
 			 ResultSet                                 RsN=SQL.executeQuery(TeacherName);
 			 if(RsN.next())
 			 {
 			     
 				 if(RsN.getString("password").equals(getPassword()))
 				 {
+					 setId(RsN.getInt("id"));
 					 return "TeacherLogin";//教师登陆成功
 				 }
 				 
@@ -73,12 +73,13 @@ public class MainAction {
 			 //执行下面说明是学生登陆
 	   else
 	    {
-				 String StudentName="select password from student where user_name="+"'"+getUserName()+"'";
+				 String StudentName="select * from student where user_name="+"'"+getUserName()+"'";
 				 ResultSet                                 RsN=SQL.executeQuery(StudentName);
 				 if(RsN.next())
 				 {
 					 if(RsN.getString("password").equals(getPassword()))
 					 {
+						 setId(RsN.getInt("id"));
 						 return "StudentLogin";
 					 }
 				 }
@@ -91,7 +92,7 @@ public class MainAction {
 	 
 	 public String ToRegister()
 	 {
-		 if(getReStatus()=="0")
+		 if(getReStatus()== 0)
 		 {
 			 return "TeacherRegister";
 		 }
@@ -105,6 +106,18 @@ public class MainAction {
 	 {
 		 return "InitialPage";
 	 }
+	public int getReStatus() {
+		return ReStatus;
+	}
+	public void setReStatus(int reStatus) {
+		ReStatus = reStatus;
+	}
+	public int getInStatus() {
+		return InStatus;
+	}
+	public void setInStatus(int inStatus) {
+		InStatus = inStatus;
+	}
 	
 
 

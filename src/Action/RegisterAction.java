@@ -1,5 +1,6 @@
 package Action;
 import java.sql.ResultSet;
+
 import DBcon.DB;
 public class RegisterAction {
 	
@@ -10,11 +11,9 @@ public class RegisterAction {
 	private String Email;
 	private String Status;
 	private String Name;
-	private String Sex;
+	private int Sex;
 	private String Age;
 	private String Telephone;
-	private String Specialty;
-	private String Introduce;
 	
 	 public void setId(String Id)
 	 {
@@ -23,24 +22,6 @@ public class RegisterAction {
 	 public String getId()
 	 {
 		 return this.Id;
-	 }
-	 
-	 public void setSpecialty(String Specialty)
-	 {
-		 this.Specialty=Specialty;
-	 }
-	 public String getSpecialty()
-	 {
-		 return this.Specialty;
-	 }
-	 
-	 public void setIntroduce(String Introduce)
-	 {
-		 this.Introduce=Introduce;
-	 }
-	 public String getIntroduce()
-	 {
-		 return this.Introduce;
 	 }
 	 
 	 
@@ -92,11 +73,11 @@ public class RegisterAction {
 		 return this.Email;
 	 }
 	 
-	 public void setSex(String Sex)
+	 public void setSex(int Sex)
 	 {
 		 this.Sex=Sex;
 	 }
-	 public String getSex()
+	 public int getSex()
 	 {
 		 return this.Sex;
 	 }
@@ -137,21 +118,42 @@ public class RegisterAction {
 	 {
 		
 		     DB SQL=new DB();
+		     String gender;
+		     if (getSex() == 1)
+		     {
+		    	 gender="ÄÐ";
+		     }
+		     else
+		     {
+		    	 gender="Å®";
+		     }
 			 String Student="insert into student values("    +"null"+","
 				                                             +"'"+getUserName()+"'"+","
 						                                     +"'"+getPassword()+"'"+","
 				                                             +"'"+getStudentId()+"'"+","
 						                                     +"'"+getName()+"'"+","
-				                                             +"'"+getSex()+"'"+","
+				                                             +"'"+gender+"'"+","
 				                                             +"'"+getAge()+"'"+","
 				                                             +"'"+getTelephone()+"'"+","
 				                                             +"'"+getEmail()+"'"+","
-				                                             +"'"+getSpecialty()+"'"+","
-				                                             +"'"+getIntroduce()+"'"
+				                                            
 			                                        +")";
 			    try
 				{
 				    SQL.executeUpdate(Student);
+				    String s = "select id from student where user_name='"+getUserName()+"'";
+				    ResultSet R = SQL .executeQuery(s);
+				    
+				    if(R.next())
+				    {
+				    	int id = R.getInt("id");
+				    	s = "insert into studentlabel values("+id+","
+															  +"null"+","
+															  +"null"+","
+															  +"null"+","
+															  +"null"+")";
+				    }
+				    SQL.executeUpdate(s);
 					return "StudentRegisterSuccessed!";
 				}
 			    catch(Exception e)
@@ -172,8 +174,7 @@ public class RegisterAction {
 										                     +"'"+getAge()+"'"+","
 										                     +"'"+getTelephone()+"'"+","
 										                     +"'"+getEmail()+"'"+","
-										                     +"'"+getSpecialty()+"'"+","
-										                     +"'"+getIntroduce()+"'"
+										                     
                                                     +")";
 				try
 				{
