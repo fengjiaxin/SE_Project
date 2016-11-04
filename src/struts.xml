@@ -9,8 +9,8 @@
 
     <package name="default" namespace ="/" extends="struts-default">
 	    <action name="sign_in" class="Action.MainAction" method="LoginAction">
-	         <result name="TeacherLogin">/Success.jsp</result>
-	         <result name="StudentLogin">/Success.jsp</result>
+	         <result name="TeacherLogin">/teacherpagedisplay.action?Id=${Id}</result>
+	         <result name="StudentLogin">/studentpagedisplay.action?Id=${Id}</result>
 	         <result name="Password_or_UsernameError">/NotExist.jsp</result>
 	         <result name="StudentLoginfail">/NotExist.jsp</result>
 	    </action>
@@ -24,7 +24,7 @@
 	         <result name="StudentRegisterSuccessed!">/Success.jsp</result>
 	         <result name="StudentRegisterFail!">/StudentRegister.jsp</result>
         </action>   
-
+		
 	    <action name="teacherregister" class="Action.RegisterAction" method="TeacherRegisterAction">
 	         <result name="TeacherRegisterSuccessed!">/Success.jsp</result>
 	         <result name="TeacherRegisterFail!">/TeacherRegister.jsp</result>
@@ -33,7 +33,35 @@
         <action name="return" class="Action.MainAction" method="InitialPage">
 	         <result name="InitialPage">/welcome.jsp</result>
 	   
-        </action>         
+        </action>
+       
+       <action name="studentpagedisplay" class="Action.StudentPageAction" method="Display">
+       	 	 <result name="Display">/StudentPersonalHomepage.jsp</result>
+        </action>
+        
+        <action name="StudentCompletePersonalInformation" class="Action.StudentPageAction" method="ToUpdate">
+        	<result name="ToUpdate">/StudentUpdate.jsp</result>
+        </action>
+       
+        <action name="StudentUpdate" class="Action.StudentPageAction" method="Update">
+        	<result name="Update">/studentpagedisplay.action?Id=${Id}</result>
+        </action>
+        
+        
+        
+        <action name="teacherpagedisplay" class="Action.TeacherPageAction" method="Diplay">
+        	<result name="Display">/TeacherPersonalHomepage.jsp</result>
+        </action>
+        
+         <action name="TeacherCompletePersonalInformation" class="Action.TeacherPageAction" method="ToUpdate">
+        	<result name="ToUpdate">/TeacherUpdate.jsp</result>
+        </action>
+        
+        <action name="TeacherUpdate" class="Action.TeacherPageAction" method="Update">
+        	<result name="Update">/teacherpagedisplay.action?Id=${Id}</result>
+        </action>
+        
+       
     </package>
 
 
