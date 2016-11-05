@@ -7,10 +7,10 @@
 <!-- START SNIPPET: xworkSample -->
 <struts>
 
-    <package name="default" namespace ="/" extends="struts-default">
+    <package name="default"  extends="struts-default">
 	    <action name="sign_in" class="Action.MainAction" method="LoginAction">
-	         <result name="TeacherLogin">/teacherpagedisplay.action?Id=${Id}</result>
-	         <result name="StudentLogin">/studentpagedisplay.action?Id=${Id}</result>
+	         <result name="TeacherLogin" type="redirectAction">/teacherpagedisplay.action?Id=${Id}</result>
+	         <result name="StudentLogin" type="redirectAction">/studentpagedisplay.action?Id=${Id}</result>
 	         <result name="Password_or_UsernameError">/NotExist.jsp</result>
 	         <result name="StudentLoginfail">/NotExist.jsp</result>
 	    </action>
@@ -44,7 +44,7 @@
         </action>
        
         <action name="StudentUpdate" class="Action.StudentPageAction" method="Update">
-        	<result name="Update">/studentpagedisplay.action?Id=${Id}</result>
+        	<result name="Update" type="redirectAction">/studentpagedisplay.action?Id=${Id}</result>
         </action>
         
         
@@ -58,7 +58,7 @@
         </action>
         
         <action name="TeacherUpdate" class="Action.TeacherPageAction" method="Update">
-        	<result name="Update">/teacherpagedisplay.action?Id=${Id}</result>
+        	<result name="Update" type="redirectAction">/teacherpagedisplay.action?Id=${Id}</result>
         </action>
         
        

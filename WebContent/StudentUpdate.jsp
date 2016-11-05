@@ -12,17 +12,17 @@
 
     
     <div class="header">
-	    <s:property value="Name"  default="郭延龙"/>
-	    <i><s:property value="Email"  default="1078530334@qq.com"/></i>
-	    <br><s:property value="Telephone"  default="18845099586"/>
-	    <s:property value="Age"  default="23"/>
-	    <s:property value="Sex"  default="男"/>
+	    <s:property value="Name"  default=" "/>
+	    <i><s:property value="Email"  default=" "/></i>
+	    <br><s:property value="Telephone"  default=" "/>
+	    <s:property value="Age"  default=" "/>
+	    <s:property value="Sex"  default=" "/>
     </div>
     
 	<div class="main" >
 	     <div class="option">
 	     <table  width="100%" border="2" cellpadding="49" cellspacing="1" >
-		      <tr><td><a href=<s:url action="CompletePersonalInformation">
+		      <tr><td><a href=<s:url action="StudentCompletePersonalInformation">
 		      <s:param name="Id" value="getId()"></s:param>
 			 </s:url>>个人信息完善</a></td></tr>
 		      <tr><td><a href=<s:url action="StudentInquiry">
@@ -35,8 +35,14 @@
 	     </div>
 	     
 	    <div class="list">
-		     <s:form ation="StudentUpDate" method="post">
-			    
+		     <s:form action="StudentUpdate" method="post">
+		     	<s:textfield name="Id" type="hidden" value="%{#request.Id}"></s:textfield>
+			    <s:doubleselect name="Academy" doubleName="Major" label="请选择学院和专业："
+					         list="Mylist" doubleList="Mymap.get(top.Id)"
+					         listKey="Id" listValue="Name"
+					         doubleListKey="Id" doubleListValue="Name" 
+					         >
+				 </s:doubleselect>
 				 <s:textfield name="Point" label="分数"></s:textfield>
 				 <s:textfield name="Interest" label="个人兴趣爱好"></s:textfield>
 				 <s:textfield name="Honor" label="荣誉"></s:textfield>

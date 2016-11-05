@@ -20,7 +20,7 @@
 			<s:radio list="#{'1':'男','0':'女'}" name="Sex" value='1' label="性别："></s:radio>
 			<s:textfield name="Age" label="年龄："></s:textfield>
 			<s:textfield name="Telephone" label="手机号："></s:textfield>
-			
+			<s:textfield name="Email" label="邮箱："></s:textfield>
 			<s:submit value="注册"></s:submit>
 		</s:form>
 	</center>

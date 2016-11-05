@@ -16,11 +16,11 @@
    
     <div class="header">顶部
     <marquee bgcolor=FF0000></marquee>
-    <s:property value="Name"  default="郭延龙"/>
-    <i><s:property value="Email"  default="1078530334@qq。com"/></i>
-    <br><s:property value="Telephone"  default="18845099586"/>
-    <s:property value="Age"  default="23"/>
-    <s:property value="Sex"  default="男"/>
+    <s:property value="Name"  default=" "/>
+    <i><s:property value="Email"  default=" "/></i>
+    <br><s:property value="Telephone"  default=" "/>
+    <s:property value="Age"  default=" "/>
+    <s:property value="Sex"  default=" "/>
     </div>
 	<div class="main">
 	    
@@ -38,13 +38,13 @@
 	     
 	     
 	     <div class="list"></div>
-	     学院                      <s:property value="Academy"  default="计算机"/><br>
-	     专业                     <s:property value="Major"  default="信息安全 "/><br>
-	     学号                     <s:property value="Id"  default="1140310321 "/><br>
-	     考研成绩           <s:property value="Point"  default="100"/><br>
-	     爱好                    <s:property value="interest"  default="看电影"/><br>
-	     荣誉                    <s:property value="Honor"  default="诺贝尔计算机突出贡献奖"/><br>
-	     经历                    <s:property value="Experience"  default="去台湾当过交换生"/>
+	     学院                      <s:property value="Academy"  default=" "/><br>
+	     专业                     <s:property value="Major"  default="  "/><br>
+	     学号                     <s:property value="Id"  default="  "/><br>
+	     考研成绩           <s:property value="Point"  default=" "/><br>
+	     爱好                    <s:property value="interest"  default=" "/><br>
+	     荣誉                    <s:property value="Honor"  default=" "/><br>
+	     经历                    <s:property value="Experience"  default=" "/>
 	</div>
 	<div class="footer">底部 </div>
 </div>

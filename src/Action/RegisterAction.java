@@ -135,12 +135,13 @@ public class RegisterAction {
 				                                             +"'"+gender+"'"+","
 				                                             +"'"+getAge()+"'"+","
 				                                             +"'"+getTelephone()+"'"+","
-				                                             +"'"+getEmail()+"'"+","
+				                                             +"'"+getEmail()+"'"
 				                                            
 			                                        +")";
 			    try
 				{
 				    SQL.executeUpdate(Student);
+				    System.out.println(Student);
 				    String s = "select id from student where user_name='"+getUserName()+"'";
 				    ResultSet R = SQL .executeQuery(s);
 				    
@@ -151,7 +152,10 @@ public class RegisterAction {
 															  +"null"+","
 															  +"null"+","
 															  +"null"+","
+															  +"null"+","
+															  +"null"+","
 															  +"null"+")";
+				    	System.out.println(s);
 				    }
 				    SQL.executeUpdate(s);
 					return "StudentRegisterSuccessed!";

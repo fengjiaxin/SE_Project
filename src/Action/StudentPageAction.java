@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.struts2.ServletActionContext;
 
 import DBcon.DB;
@@ -102,6 +104,9 @@ public class StudentPageAction extends Student{
 			setSex(r.getString("sex"));
 			setTelephone(r.getString("telephone"));
 		}
+		
+		HttpServletRequest request = ServletActionContext.getRequest();
+    	request.setAttribute("Id", getId());
 		return "ToUpdate";
 	}
 	
@@ -109,12 +114,13 @@ public class StudentPageAction extends Student{
 	{
 		DB mydb = new DB();
 		String s = "update studentlabel set point="+getPoint()+
-											",academy="+getAcademy()+
-											",major="+getMajor()+
-											",interest="+getInterest()+
-											",experience="+getExperience()+
-											",honor="+getHonor()+
-											"where Id="+getId();
+											",academy="+"'"+getAcademy()+"'"+
+											",major="+"'"+getMajor()+"'"+
+											",interest="+"'"+getInterest()+"'"+
+											",experience="+"'"+getExperience()+"'"+
+											",honor="+"'"+getHonor()+"'"+
+											" where id="+getId()+";";
+		System.out.println(s);
 		mydb.executeUpdate(s);
 		return "Update";
 	}
