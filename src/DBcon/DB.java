@@ -10,7 +10,7 @@ public class DB {
 		try
 		{
 			Class.forName("com.mysql.jdbc.Driver");//连接驱动
-			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/TSDB","root","qazwsx123");//连接数据库
+			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/tsdb","root","");//连接数据库
             stat=con.createStatement();
 		}
 		
