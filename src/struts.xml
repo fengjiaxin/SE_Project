@@ -35,7 +35,7 @@
 	   
         </action>
        
-       <action name="studentpagedisplay" class="Action.StudentPageAction" method="Display">
+        <action name="studentpagedisplay" class="Action.StudentPageAction" method="Display">
        	 	 <result name="Display">/StudentPersonalHomepage.jsp</result>
         </action>
         
@@ -45,6 +45,10 @@
        
         <action name="StudentUpdate" class="Action.StudentPageAction" method="Update">
         	<result name="Update" type="redirectAction">/studentpagedisplay.action?Id=${Id}</result>
+        </action>
+        
+        <action name="StudentInquiry" class="Action.StudentSearchAction" method="excute">
+        <result name="Search">/StudentInquirydisplay.jsp</result>
         </action>
         
         
@@ -60,6 +64,11 @@
         <action name="TeacherUpdate" class="Action.TeacherPageAction" method="Update">
         	<result name="Update" type="redirectAction">/teacherpagedisplay.action?Id=${Id}</result>
         </action>
+        
+        <action name="TeacherInquiry" class="Action.TeacherSearchAction" method="excute" >
+        <result name="Search">/TeacherInquirydisplay.jsp</result>
+        </action>
+        
         
        
     </package>
