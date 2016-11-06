@@ -111,4 +111,35 @@ public class TeacherPageAction extends Teacher{
     	request.setAttribute("Id", getId());
 		return "ToUpdate";
 	}
+	
+	public String Update() throws Exception
+	{
+		
+		DB mydb = new DB();
+		String staca = "select * from department where academyid="+getAcademy();
+		String aca="";
+		String SResearch="";
+		String Researchs[];
+		int maI=Integer.parseInt(getResearch());
+		ResultSet r= mydb.executeQuery(staca);
+		if(r.next())
+		{
+			aca=r.getString("academyname");
+			Researchs=r.getString("research").split(",");
+			SResearch=Researchs[maI-1];
+		}
+		
+		
+		String s = "update teacherlabel set academy="+"'"+aca+"'"+
+											
+											",research="+"'"+SResearch+"'"+
+											",article="+"'"+getArticle()+"'"+
+											",experience="+"'"+getExperience()+"'"+
+											",honor="+"'"+getHonor()+"'"+
+											",neednum="+getNeedNum()+
+											",needs="+"'"+getNeeds()+"'"+
+											" where id="+getId()+";";
+		mydb.executeUpdate(s);
+		return "Update";
+	}
 }

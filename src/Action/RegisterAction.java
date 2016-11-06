@@ -170,19 +170,46 @@ public class RegisterAction {
 	 {
 		 
 	         DB SQL=new DB();
+	         String gender;
+		     if (getSex() == 1)
+		     {
+		    	 gender="ÄÐ";
+		     }
+		     else
+		     {
+		    	 gender="Å®";
+		     }
 			 String Teacher="insert into teacher values("    +"null"+","
 										                     +"'"+getUserName()+"'"+","
 										                     +"'"+getPassword()+"'"+","
 										                     +"'"+getName()+"'"+","
-										                     +"'"+getSex()+"'"+","
+										                     +"'"+gender+"'"+","
 										                     +"'"+getAge()+"'"+","
 										                     +"'"+getTelephone()+"'"+","
-										                     +"'"+getEmail()+"'"+","
+										                     +"'"+getEmail()+"'"
 										                     
                                                     +")";
 				try
 				{
-				SQL.executeUpdate(Teacher);
+					SQL.executeUpdate(Teacher);
+					System.out.println(Teacher);
+					String s = "select id from teacher where user_name='"+getUserName()+"'";
+				    ResultSet R = SQL .executeQuery(s);
+				    
+				    if(R.next())
+				    {
+				    	int id = R.getInt("id");
+				    	s = "insert into teacherlabel values("+id+","
+															  +"null"+","
+															  +"null"+","
+															  +"null"+","
+															  +"null"+","
+															  +"null"+","
+															  +"null"+","
+															  +"null"+");";
+				    	System.out.println(s);
+				    }
+				    SQL.executeUpdate(s);
 				return "TeacherRegisterSuccessed!";
 				}
 				catch(Exception e)

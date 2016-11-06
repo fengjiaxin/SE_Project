@@ -2,12 +2,7 @@ package Action;
 
 import java.sql.ResultSet;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.struts2.ServletActionContext;
-
 import DBcon.DB;
-import Data.Student;
 public class MainAction {
 	 private String UserName;
 	 private String Password;

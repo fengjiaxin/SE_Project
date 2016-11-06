@@ -10,51 +10,57 @@
 </head>
 <body>
 
-<div class="homepage">
+
+
    
    
     <div class="header">顶部
-    <marquee bgcolor=FF0000></marquee>
-    <s:property value="Name"  default=" "/>
-    <i><s:property value="Email"  default=" "/></i>
-    <br><s:property value="Telephone"  default=" "/>
-    <s:property value="Age"  default=" "/>
-    <s:property value="Sex"  default=" "/>
+	    <marquee bgcolor=FF0000></marquee>
+	    <s:property value="Name"  default=" "/>
+	    <i><s:property value="Email"  default=" "/></i>
+	    <br><s:property value="Telephone"  default=" "/>
+	    <s:property value="Age"  default=" "/>
+	    <s:property value="Sex"  default=" "/>
     </div>
 	<div class="main">
 	    
 	     <div class="option">
-			     <a href=<s:url action="TeacherCompletePersonalInformation">
-			     <s:param name="Id" value="getId()"></s:param>
-				 </s:url>>个人信息完善</a>
-				 <br><a href=<s:url action="TeacherInquiry">
-				 </s:url>>查询</a>
-				 <br><a href=<s:url action="ApplicationList_Student">
-				 </s:url>>申请列表</a>
-				 <br><a href=<s:url action="TeacherSystemreCommendation">
-				 </s:url>>系统推荐</a>
+			  <table  width="100%" border="2" cellpadding="49" cellspacing="1" >
+		      <tr><td><a href=<s:url action="TeacherCompletePersonalInformation">
+		      <s:param name="Id" value="getId()"></s:param>
+			 </s:url>>个人信息完善</a></td></tr>
+		      <tr><td><s:form action="TeacherInquiry" method="post">
+			    <s:select name="AcademyId" list="Mylist" label="学院" listValue="Name" listKey="id"></s:select>
+			    <s:textfield name="Id" type="hidden" value="%{#request.Id}"></s:textfield>
+			<s:submit value="查询"></s:submit></s:form></td></tr>
+		     <tr><td><a href=<s:url action="ApplicationList">
+			 </s:url>>申请列表</a></td></tr>
+			<tr><td><a href=<s:url action="SystemreCommendation">
+			 </s:url>>系统推荐</a></td></tr>
+			 </table>
 	     </div>
 	     
 	     
-	     <div class="list"></div>
-		<s:form ation="TeacherUpdate" method="post">
-			<s:textfield name="Id" type="hidden" value="%{#request.Id}"></s:textfield>
-		     <s:doubleselect name="Academy" doubleName="Research"
-					         list="Mylist" doubleList="Mymap.get(top.Id)"
-					         listKey="Id" listValue="Name"
-					         doubleListKey="Id" doubleListValue="Name" 
-					         >
-			 </s:doubleselect>
-			  论文                  <s:property value="Article"  default=" "/><br>
-			  经历                  <s:property value="Experience"  default=" "/><br>
-			  荣誉                  <s:property value="Honor"  default=" "/><br>
-			  招生人数         <s:property value="NeedNum"  default=" "/><br>
-			  招生需求         <s:property value="Needs"  default=" "/> 
-			        <s:submit value="更新"></s:submit>
-	   </s:form>
+	    <div class="list">
+			<s:form action="TeacherUpdate" method="post">
+				<s:textfield name="Id" type="hidden" value="%{#request.Id}"></s:textfield>
+			     <s:doubleselect name="Academy" doubleName="Research" label="学院和研究方向"
+						         list="Mylist" doubleList="Mymap.get(top.Id)"
+						         listKey="Id" listValue="Name"
+						         doubleListKey="Id" doubleListValue="Name" 
+						         >
+				 </s:doubleselect>
+					 <s:textfield name="Article" label="论文："></s:textfield>
+					 <s:textfield name="Experience" label="经历："></s:textfield>
+					 <s:textfield name="Honor" label="荣誉："></s:textfield>
+					 <s:textfield name="NeedNum" label="招生人数："></s:textfield>
+					 <s:textfield name="Needs" label="招生需求："></s:textfield>
+				     <s:submit value="更新"></s:submit>
+		   </s:form>
+	   </div>
 	</div>
 	<div class="footer">底部 </div>
-</div>
+
 
 <img src=WEB-INF/updatabrand.jsp>
 </body>

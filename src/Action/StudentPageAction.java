@@ -39,6 +39,7 @@ public class StudentPageAction extends Student{
 		DB SQL = new DB();
 		String s = "select * from department"; 
 		ResultSet r = SQL.executeQuery(s);
+		
 		Mymap = new HashMap<Integer,List<Major>>();
 		Mylist = new ArrayList<Academy>();
 		while(r.next())
@@ -87,6 +88,8 @@ public class StudentPageAction extends Student{
 			setExperience(r.getString("experience"));
 			setHonor(r.getString("honor"));
 		}
+		HttpServletRequest request = ServletActionContext.getRequest();
+    	request.setAttribute("Id", getId());
 		return "Display";
 	}
 	
@@ -110,17 +113,28 @@ public class StudentPageAction extends Student{
 		return "ToUpdate";
 	}
 	
-	public String Update()
+	public String Update() throws Exception
 	{
 		DB mydb = new DB();
+		String staca = "select * from department where academyid="+getAcademy();
+		String aca="";
+		String Smajor="";
+		String majors[];
+		int maI=Integer.parseInt(getMajor());
+		ResultSet r= mydb.executeQuery(staca);
+		if(r.next())
+		{
+			aca=r.getString("academyname");
+			majors=r.getString("major").split(",");
+			Smajor=majors[maI-1];
+		}
 		String s = "update studentlabel set point="+getPoint()+
-											",academy="+"'"+getAcademy()+"'"+
-											",major="+"'"+getMajor()+"'"+
+											",academy="+"'"+aca+"'"+
+											",major="+"'"+Smajor+"'"+
 											",interest="+"'"+getInterest()+"'"+
 											",experience="+"'"+getExperience()+"'"+
 											",honor="+"'"+getHonor()+"'"+
 											" where id="+getId()+";";
-		System.out.println(s);
 		mydb.executeUpdate(s);
 		return "Update";
 	}

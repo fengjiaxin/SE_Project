@@ -14,7 +14,7 @@ border:1px #000000 solid;
 }
 .option{
 float:left;
-width:20%;
+width:30%;
 height:480px;
 border:1px #000000 solid;
 overflow:hidden;text-align:center;
@@ -22,7 +22,7 @@ overflow:hidden;text-align:center;
 }
 .list{
 float:left;
-width:70%;
+width:65%;
 height:550px;
 
 

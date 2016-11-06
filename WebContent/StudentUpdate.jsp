@@ -25,8 +25,10 @@
 		      <tr><td><a href=<s:url action="StudentCompletePersonalInformation">
 		      <s:param name="Id" value="getId()"></s:param>
 			 </s:url>>个人信息完善</a></td></tr>
-		      <tr><td><a href=<s:url action="StudentInquiry">
-			 </s:url>>查询</a></td></tr>
+		      <tr><td><s:form action="StudentInquiry" method="post">
+			    <s:select name="AcademyId" list="Mylist" label="学院" listValue="Name" listKey="id"></s:select>
+			    <s:textfield name="Id" type="hidden" value="%{#request.Id}"></s:textfield>
+			<s:submit value="查询"></s:submit></s:form></td></tr>
 		     <tr><td><a href=<s:url action="ApplicationList">
 			 </s:url>>申请列表</a></td></tr>
 			<tr><td><a href=<s:url action="SystemreCommendation">
@@ -51,8 +53,7 @@
 		     </s:form>
 	    </div>
 	</div>
-	
-	<div class="footer">底部 </div>
+	<div class="footer">底部 <s:debug></s:debug></div>
 
 
 
