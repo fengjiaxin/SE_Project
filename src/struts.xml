@@ -51,8 +51,14 @@
         <result name="Search">/StudentInquirydisplay.jsp</result>
         </action>
         
+         <action name="TeacherDetail" class="Action.TeacherDetailAction" method="excute">
+        	<result name="TeacherDetail">/TeacherPage.jsp</result>
+        </action>        
         
-        
+        <action name="StudentDetail" class="Action.StudentDetailAction" method="excute">
+        	<result name="StudentDetail">/StudentPage.jsp</result>
+        </action>
+
         <action name="teacherpagedisplay" class="Action.TeacherPageAction" method="Display">
         	<result name="Display">/TeacherPersonalHomepage.jsp</result>
         </action>
