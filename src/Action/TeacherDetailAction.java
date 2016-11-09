@@ -14,17 +14,9 @@ import org.apache.struts2.ServletActionContext;
 import DBcon.DB;
 
 public class TeacherDetailAction  {
-	private int StudentId;
+
 	private Teacher teacher;
-	
-	public  int getStudentId()
-	{
-		return this.StudentId;
-	}
-	public  void setStudentId(int StudentId)
-	{
-		this.StudentId=StudentId;
-	}
+
 	
 	public  Teacher getTeacher()
 	{
@@ -78,22 +70,7 @@ public class TeacherDetailAction  {
     	request.setAttribute("StudentID", StudentID);
 		return "TeacherDetail";
     }
-	
-	public String Application() throws Exception
-	{
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		return "";
-	}
-	
 	
 	
 	

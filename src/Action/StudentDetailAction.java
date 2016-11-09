@@ -12,22 +12,11 @@ import DBcon.DB;
 
 public class StudentDetailAction {
 	private Student student;
-	private int TeacherId;
-	
-	public  int getTeacherId()
-	{
-		return this.TeacherId;
-	}
-	public  void setTeacherId(int TeacherId)
-	{
-		this.TeacherId=TeacherId;
-	}
-	
-	public  Student getstudent()
+	public  Student getStudent()
 	{
 		return this.student;
 	}
-	public  void setstudent(Student teacher)
+	public  void setStudent(Student teacher)
 	{
 		this.student=teacher;
 	}
