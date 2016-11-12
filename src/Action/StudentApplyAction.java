@@ -8,7 +8,7 @@ import org.apache.struts2.ServletActionContext;
 
 import DBcon.DB;
 
-public class StudentAppleAction {
+public class StudentApplyAction {
 	
 	
 	
