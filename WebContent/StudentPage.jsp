@@ -14,14 +14,14 @@
     <div class="header">
 	    <div class="headerleft"><h1>学生主页</h1></div>
 	    <div class="headerright">
-	    														<br>
-		    姓名：<s:property value="student.Name"  default=" "/>
-		    性别：<s:property value="student.Sex"  default=" "/>
-		    年龄：<s:property value="student.Age"  default=" "/><br>
-		   
-		   													  
-		     邮箱：<s:property value="student.Email"  default=" "/>
+	    										
+		    姓名：<s:property value="student.Name"  default=" "/>;
+		    性别：<s:property value="student.Sex"  default=" "/>;
+		    年龄：<s:property value="student.Age"  default=" "/>;<br>
+					  
+		     邮箱：<s:property value="student.Email"  default=" "/>;
 		    电话：<s:property value="student.Telephone"  default=" "/><br>
+		    是否已确定导师：<s:if test="student.Status == '0'.toString()">否</s:if> <s:else>是</s:else> 
 		</div>
     </div>
     
@@ -33,12 +33,12 @@
 		   经历:<s:property value="student.Experience"  default=" "/><br>
 		  荣誉 :<s:property value="student.Honor"  default=" "/><br> 
 		 本科成绩：<s:property value="student.Point"  default=" "/>
-		 <s:form name="teacherask">
+		 <s:form action="teacherask">
 		  	<s:textfield name="StudentId" type="hidden" value="%{#request.StudentId}"></s:textfield>
 		  	<s:textfield name="TeacherId" type="hidden" value="%{#request.TeacherId}"></s:textfield>
 		  	<s:submit class="button" value="邀请"></s:submit>
 		  </s:form>
 		  </div>
 	</div>
-	<div class="footer">底部</div>
+	<div class="footer">@版权归 先锋战队所有 <br>详情请咨询454285842@qq.com </div>
 

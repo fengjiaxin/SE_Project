@@ -12,28 +12,42 @@
 
     
     <div class="header">
-	    <s:property value="Name"  default=" "/>
-	    <i><s:property value="Email"  default=" "/></i>
-	    <br><s:property value="Telephone"  default=" "/>
-	    <s:property value="Age"  default=" "/>
-	    <s:property value="Sex"  default=" "/>
+    <a href=<s:url value="studentpagedisplay.action">
+	    		<s:param name="Id" value="getId()"></s:param>
+	    		</s:url>><img src="<%=request.getContextPath()%>/css/homea1.jpg">
+	</a>
+	     姓名：<s:property value="Name"  default=" "/>
+	    年龄：<s:property value="Age"  default=" "/>
+	    性别：<s:property value="Sex"  default=" "/><br>
+	  &nbsp;&nbsp;&nbsp;&nbsp;邮箱：<s:property value="Email"  default=" "/><br>
+	    &nbsp;&nbsp;&nbsp;&nbsp;电话：<s:property value="Telephone"  default=" "/>
     </div>
     
 	<div class="main" >
 	     <div class="option">
-	     <table  width="100%" border="2" cellpadding="49" cellspacing="1" >
-		      <tr><td><a href=<s:url action="StudentCompletePersonalInformation">
+	     <div class="tab">
+		      <a href=
+		      <s:url action="StudentCompletePersonalInformation">
 		      <s:param name="Id" value="getId()"></s:param>
-			 </s:url>>个人信息完善</a></td></tr>
-		      <tr><td><s:form action="StudentInquiry" method="post">
+			  </s:url>>个人信息完善</a>
+			 </div>
+		     <div class="tab">
+		     <s:form action="StudentInquiry" method="post">
 			    <s:select name="AcademyId" list="Mylist" label="学院" listValue="Name" listKey="id"></s:select>
 			    <s:textfield name="Id" type="hidden" value="%{#request.Id}"></s:textfield>
-			<s:submit value="查询"></s:submit></s:form></td></tr>
-		     <tr><td><a href=<s:url action="ApplicationList">
-			 </s:url>>申请列表</a></td></tr>
-			<tr><td><a href=<s:url action="SystemreCommendation">
-			 </s:url>>系统推荐</a></td></tr>
-			 </table>
+			    <s:submit class="button" value="查询"></s:submit>
+			 </s:form>
+			</div>
+		      <div class="tab">
+		      <a href=<s:url action="StudentList">
+		      <s:param name="Id" value="getId()"></s:param>
+			 </s:url>>申请列表</a>
+			 </div>
+
+			 <div class="tab">
+			 <a href=<s:url action="SystemreCommendation">
+			 </s:url>>系统推荐</a>
+			 </div>
 	     </div>
 	     
 	    <div class="list">
@@ -46,14 +60,14 @@
 					         >
 				 </s:doubleselect>
 				 <s:textfield name="Point" label="分数"></s:textfield>
-				 <s:textfield name="Interest" label="个人兴趣爱好"></s:textfield>
+				 <s:textfield name="Interest" label="兴趣方向"></s:textfield>
 				 <s:textfield name="Honor" label="荣誉"></s:textfield>
-				 <s:textfield name="Experience" label="经验"></s:textfield>
+				 <s:textfield name="Experience" label="经历"></s:textfield>
 		         <s:submit value="更新"></s:submit>
 		     </s:form>
 	    </div>
 	</div>
-	<div class="footer">底部 <s:debug></s:debug></div>
+	<div class="footer">@版权归 先锋战队所有 <br>详情请咨询454285842@qq.com</div>
 
 
 

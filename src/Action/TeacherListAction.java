@@ -12,10 +12,10 @@ import org.apache.struts2.ServletActionContext;
 
 import DBcon.DB;
 import Data.Academy;
-import Data.ApplyTeacher;
-import Data.Student;
+import Data.ApplyStudent;
+import Data.Teacher;
 
-public class StudentListAction extends Student{
+public class TeacherListAction extends Teacher{
 	private List<Academy>Mylist;
 	
 	public List<Academy> getMylist() {
@@ -26,7 +26,7 @@ public class StudentListAction extends Student{
 		Mylist = mylist;
 	}
 	
-	public StudentListAction() throws Exception
+	public TeacherListAction() throws Exception
 	{
 		DB SQL = new DB();
 		Mylist = new ArrayList<Academy>();
@@ -44,14 +44,12 @@ public class StudentListAction extends Student{
 	public String listdisplay() throws Exception
 	{
 		Map<String,String> StatusMap = new HashMap<String,String>();
-		StatusMap.put("D", "待定");
-		StatusMap.put("T", "同意");
-		StatusMap.put("Q", "确定");
-		StatusMap.put("J", "拒绝");
-		List<ApplyTeacher>TeacherList = new ArrayList<ApplyTeacher>();
-		
+		StatusMap.put("W", "未选择");
+		StatusMap.put("Y", "已同意");
+		StatusMap.put("Q", "已确认");
+		List<ApplyStudent>StudentList = new ArrayList<ApplyStudent>();
 		DB mydb = new DB();
-		String s="select * from student where id="+getId();
+		String s="select * from teacher where id="+getId();
 		ResultSet r = mydb.executeQuery(s);
 		if(r.next())
 		{
@@ -62,29 +60,27 @@ public class StudentListAction extends Student{
 			setTelephone(r.getString("telephone"));
 		}
 		
-		s = "select * from studentlist where id="+getId();
+		s = "select * from teacherlist where id="+getId();
 		r = mydb.executeQuery(s);
 		int num = 0;
-		
 		if(r.next())
 		{
-			num = r.getInt("num");
-			
-			if(num != 0)
+			if(r.getString("list") != null && !r.getString("list").matches("\\s*"))
 			{
 				String list[] =  r.getString("list").split(",");
+				num = list.length;
 				for (int i=0;i<num;i++)
 				{
 					String idandsta[] = list[i].split(":");
-					s = "select name from teacher where id="+idandsta[0];
+					s = "select name from student where id="+idandsta[0];
 					ResultSet r2 = mydb.executeQuery(s);
 					if(r2.next())
 					{
-						ApplyTeacher one = new ApplyTeacher();
+						ApplyStudent one = new ApplyStudent();
 						one.setName(r2.getString("name"));
 						one.setId(Integer.parseInt(idandsta[0]));
 						one.setStatus(idandsta[1]);
-						TeacherList.add(one);
+						StudentList.add(one);
 					}
 					
 				}
@@ -92,11 +88,11 @@ public class StudentListAction extends Student{
 			
 			
 		}
-		
 		HttpServletRequest request = ServletActionContext.getRequest();
 		request.setAttribute("Id", getId());
-    	request.setAttribute("TeacherList", TeacherList);
+    	request.setAttribute("StudentList", StudentList);
     	request.setAttribute("Map", StatusMap);
-    	return "ListDisplay";
+		return "ListDisplay";
 	}
+
 }

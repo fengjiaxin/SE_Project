@@ -12,11 +12,15 @@
 
     
     <div class="header">
-	    姓名：<s:property value="Name"  default=" "/><br>
+	    <a href=<s:url value="studentpagedisplay.action">
+	    		<s:param name="Id" value="getId()"></s:param>
+	    		</s:url>><img src="<%=request.getContextPath()%>/css/homea1.jpg">
+	</a>
+	     姓名：<s:property value="Name"  default=" "/>
 	    年龄：<s:property value="Age"  default=" "/>
 	    性别：<s:property value="Sex"  default=" "/><br>
-	    联系方式：<s:property value="Email"  default=" "/>
-	    <s:property value="Telephone"  default=" "/>
+	   &nbsp;&nbsp;&nbsp;&nbsp;邮箱：<s:property value="Email"  default=" "/><br>
+	    &nbsp;&nbsp;&nbsp;&nbsp;电话：<s:property value="Telephone"  default=" "/>
     </div>
     
 	<div class="main" >
@@ -32,7 +36,7 @@
 		     <s:form action="StudentInquiry" method="post">
 			    <s:select name="AcademyId" list="Mylist" label="学院" listValue="Name" listKey="id"></s:select>
 			    <s:textfield name="Id" type="hidden" value="%{#request.Id}"></s:textfield>
-			    <s:submit value="查询"></s:submit>
+			    <s:submit class="button" value="查询"></s:submit>
 			 </s:form>
 			</div>
 		      <div class="tab">
@@ -57,7 +61,7 @@
 			</tr>  
 			<s:iterator value="#request.TeacherList"> 
 				<tr>
-					<td  align="center">
+					<td  class="name" align="center">
 						<a href=
 							<s:url value="TeacherDetail.action">
 								<s:param name="TeacherId" value="Id"/>
@@ -96,5 +100,5 @@
 		</table>
 	    </div>
 	</div>
-	<div class="footer">底部<s:debug></s:debug></div>
+	<div class="footer">@版权归 先锋战队所有 <br>详情请咨询454285842@qq.com </div>
 

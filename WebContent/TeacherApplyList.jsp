@@ -5,21 +5,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Student message update</title>
+<title>StudentApplyList</title>
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/css/backround.css"/>
 </head>
 
 
     
     <div class="header">
-	    <a href=<s:url value="studentpagedisplay.action">
+	    <a href=<s:url value="teacherpagedisplay.action">
 	    		<s:param name="Id" value="getId()"></s:param>
 	    		</s:url>><img src="<%=request.getContextPath()%>/css/homea1.jpg">
 	</a>
 	     姓名：<s:property value="Name"  default=" "/>
 	    年龄：<s:property value="Age"  default=" "/>
 	    性别：<s:property value="Sex"  default=" "/><br>
-	  &nbsp;&nbsp;&nbsp;&nbsp;邮箱：<s:property value="Email"  default=" "/><br>
+	   &nbsp;&nbsp;&nbsp;&nbsp;邮箱：<s:property value="Email"  default=" "/><br>
 	    &nbsp;&nbsp;&nbsp;&nbsp;电话：<s:property value="Telephone"  default=" "/>
     </div>
     
@@ -28,19 +28,19 @@
 	     
 	     <div class="tab">
 		      <a href=
-		      <s:url action="StudentCompletePersonalInformation">
+		      <s:url action="TeacherCompletePersonalInformation">
 		      <s:param name="Id" value="getId()"></s:param>
 			  </s:url>>个人信息完善</a>
 			 </div>
 		     <div class="tab">
-		     <s:form action="StudentInquiry" method="post">
+		     <s:form action="TeacherInquiry" method="post">
 			    <s:select name="AcademyId" list="Mylist" label="学院" listValue="Name" listKey="id"></s:select>
 			    <s:textfield name="Id" type="hidden" value="%{#request.Id}"></s:textfield>
 			    <s:submit class="button" value="查询"></s:submit>
 			 </s:form>
 			</div>
 		      <div class="tab">
-		      <a href=<s:url action="StudentList">
+		      <a href=<s:url action="TeacherList">
 		      <s:param name="Id" value="getId()"></s:param>
 			 </s:url>>申请列表</a>
 			 </div>
@@ -52,24 +52,50 @@
 	     </div>
 	     
 	    <div class="list">
-	    <table border="1" width="50%" cellpadding="0" cellspacing="0" align="center">  
+	    <table border="1" width="75%" cellpadding="0" cellspacing="0" align="center">  
 			<tr style="background-color: yellow">
-				<td align="center">导师姓名</td>
-				<td align="center">研究方向</td>
+				<td align="center">学生姓名</td>
+				<td align="center">申请状态</td>
+				<td align="center">操作</td>
+				
 			</tr>  
-			<s:iterator value="#request.List"> 
+			<s:iterator value="#request.StudentList"> 
 				<tr>
-					<td class="name" align="center">
+					<td  class="name" align="center">
 						<a href=
-							<s:url value="TeacherDetail.action">
-								<s:param name="TeacherId" value="Id"/>
-								<s:param name="StudentId" value="%{#request.Id}"/>
+							<s:url value="StudentDetail.action">
+								<s:param name="StudentId" value="Id"/>
+								<s:param name="TeacherId" value="%{#request.Id}"/>
 							</s:url>>
 							<s:property value="Name"/>
-							</a>
+						</a>
 					</td>
 					<td align="center">					
-							<s:property value="Research"/>
+							<s:property value="%{#request.Map[Status]}"/>
+					</td>
+					<td class="apply" align="center">
+						<s:if test="Status == 'W'.toString()">
+							<a  href=
+							<s:url value="TeacherAgree.action">
+								<s:param name="StudentId" value="Id"/>
+								<s:param name="TeacherId" value="%{#request.Id}"/>
+							</s:url>>
+							同意
+							</a>
+						</s:if>
+						<s:else> </s:else>
+						<s:if test="Status == 'W'.toString()"> 
+							<a class="apply" href=
+							<s:url value="TeacherReject.action">
+								<s:param name="StudentId" value="Id"/>
+								<s:param name="TeacherId" value="%{#request.Id}"/>
+							</s:url>>
+							拒绝
+							</a>
+						</s:if>
+						<s:else>
+							
+						</s:else>
 					</td>
 				</tr>
 			</s:iterator>

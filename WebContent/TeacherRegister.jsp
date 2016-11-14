@@ -14,11 +14,11 @@
 		<s:form action="teacherregister" method="post">
 			<s:textfield type="text" name="UserName" label="用户名："></s:textfield>
 			<s:textfield type="password" name="Password" label="密码："></s:textfield>
-			<s:textfield type="text" name="Email" label="邮箱："></s:textfield>
 			<s:textfield name="Name" label="真实姓名："></s:textfield>
 			<s:radio list="#{'1':'男','0':'女'}" name="Sex" value='1' label="性别："></s:radio>
 			<s:textfield name="Age" label="年龄："></s:textfield>
 			<s:textfield name="Telephone" label="手机号："></s:textfield>
+			<s:textfield name="Email" label="邮箱："></s:textfield>
 			<s:submit value="注册"></s:submit>
 			
 		</s:form>

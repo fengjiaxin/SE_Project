@@ -14,14 +14,15 @@
     <div class="header">
 	    <div class="headerleft"><h1>导师主页</h1></div>
 	    <div class="headerright">
-	    														<br>
-		    姓名：<s:property value="teacher.Name"  default=" "/>
-		    性别：<s:property value="teacher.Sex"  default=" "/>
-		    年龄：<s:property value="teacher.Age"  default=" "/>
-		    招生人数：<s:property value="teacher.NeedNum"  default=" "/><br>
+	    														
+		    姓名：<s:property value="teacher.Name"  default=" "/>;
+		    性别：<s:property value="teacher.Sex"  default=" "/>;
+		    年龄：<s:property value="teacher.Age"  default=" "/>;
+		   <br>
 		   													  
-		     邮箱：<s:property value="teacher.Email"  default=" "/>
+		     邮箱：<s:property value="teacher.Email"  default=" "/>;
 		    电话：<s:property value="teacher.Telephone"  default=" "/><br>
+		     招生人数：<s:property value="teacher.NeedNum"  default=" "/>；是否已满：<s:if test="teacher.Status == 0">否</s:if> <s:else>是</s:else>
 		</div>
     </div>
     
@@ -33,12 +34,12 @@
 		   经历:<s:property value="teacher.Experience"  default=" "/><br>
 		  荣誉 :<s:property value="teacher.Honor"  default=" "/><br> 
 		  招生需求：<s:property value="teacher.Needs"  default=" "/>
-		  <s:form name="studentapply">
+		  <s:form action="studentapply">
 		  	<s:textfield name="StudentId" type="hidden" value="%{#request.StudentId}"></s:textfield>
 		  	<s:textfield name="TeacherId" type="hidden" value="%{#request.TeacherId}"></s:textfield>
 		  	<s:submit class="button" value="申请"></s:submit>
 		  </s:form>
 		  </div>
 	</div>
-	<div class="footer">底部</div>
+	<div class="footer">@版权归 先锋战队所有 <br>详情请咨询454285842@qq.com</div>
 
