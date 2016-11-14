@@ -21,7 +21,7 @@ public class StudentApplyAction {
 		
 		TeacherID=ServletActionContext.getRequest().getParameter("TeacherId");
 		StudentID=ServletActionContext.getRequest().getParameter("StudentId");
-		
+
 		String str="select* from studentlist where id="+StudentID;
 		ResultSet rsn=db.executeQuery(str);
 		System.out.println(str);
