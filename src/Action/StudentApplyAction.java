@@ -10,7 +10,15 @@ import DBcon.DB;
 
 public class StudentApplyAction {
 	
-	
+	private int Id;
+	 public void setId(int Id)
+	 {
+		 this.Id = Id;
+	 }
+	 public int getId()
+	 {
+		 return this.Id;
+	 }
 	
 	
 	public String excute() throws Exception
@@ -21,12 +29,23 @@ public class StudentApplyAction {
 		
 		TeacherID=ServletActionContext.getRequest().getParameter("TeacherId");
 		StudentID=ServletActionContext.getRequest().getParameter("StudentId");
+		setId(Integer.parseInt(StudentID));
+		DB dbs=new DB();
+		String ss="select* from student where id="+StudentID;
+		ResultSet rss=dbs.executeQuery(ss);
+		if(rss.next())
+		{
+			if(rss.getInt("status")==1)
+			{
+				return "DontApp";
+			}
+		}
 		
 		String str="select* from studentlist where id="+StudentID;
 		ResultSet rsn=db.executeQuery(str);
-		System.out.println(str);
-		if(rsn.next())//首先找到学生
+        if(rsn.next())//首先找到学生
 		{
+			setId(rsn.getInt("id"));
 			if(rsn.getInt("num")>=3)//执行这个分支说明学生申请导师的数量已经达到上限，不能再申请了
 			{
 				return "DontApp";
@@ -38,64 +57,55 @@ public class StudentApplyAction {
 				ResultSet rsnt=dbt.executeQuery(strt);
 				if(rsnt.next())//找到对应的老师
 				{
-					if(rsnt.getInt("num")>=10)//执行这一步说明与该导师达成意向的学生人数已达导师需求的上限
+					int n=10;//存储老师招生人数
+					DB dbtr=new DB();
+					String st="select* from teacherlabel where id="+TeacherID;
+					ResultSet rstnr=dbtr.executeQuery(st);
+					if(rstnr.next())
+					
+					{
+						n=rstnr.getInt("neednum");
+					}
+					
+					if(rsnt.getInt("num")>=n)//执行这一步说明与该导师达成意向的学生人数已达导师需求的上限
 					{
 						return "DontApp";
 					}
 					else
 					{
 						int length=0;
-						String ID_temporary="";
-						String slist=rsn.getString("list");
-						String[] repeat={};
-						String[] RepeatArry={};
-						if(rsn.getInt("num")>0)
+						int num=rsn.getInt("num");
+						String slist=rsn.getString("list");	
+						if(rsn.getString("list") != null)
 						{
-							repeat=slist.split(",");
-							slist="";
-						    length=repeat.length;
+							String[] list=slist.split(",");
+							String[] rlist={};
+							length=list.length;
 							for(int i=0;i<length;i++)
 							{
-								slist+=repeat[i];
-							}
-							RepeatArry=slist.split("[a-zA-Z]");//进一步分割
-						}
-						
-						length=RepeatArry.length;
-						for(int i=0;i<length;i++)
-						{
-							if( RepeatArry[i].equals(":")|| i==length-1)
-							{
-								if(ID_temporary.equals(TeacherID))
+								rlist=list[i].split(":");
+								if(rlist[0].equals(TeacherID))
 								{
-									return "DontApp";//说明该老师已经申请过了
+									return "DontApp";//说明已经向该导师发出过申请
 								}
-								ID_temporary="";
-							}
-							else
-							{
-								ID_temporary+=RepeatArry[i];
 							}
 						}
 						//往下执行说明可以进行申请
-						//更新学生信息
-						String S_list=rsn.getString("list");
-						int    S_num=rsn.getInt("num");
-						if(rsn.getInt("num")==0)
+						//首先更新学生信息
+						if(num==0)
 						{
-							S_list=TeacherID+":D";//考虑第一次申请
+							slist=TeacherID+":D";//考虑第一次申请或申请过但由于种种原因导致list为空的情况
 						}
 						else
 						{
-							S_list+=","+TeacherID+":D";
+							slist+=","+TeacherID+":D";
 						}
-						S_num++;
-						String s = "update studentlist set list="+"'"+S_list+"'"+",num="+S_num+" where id="+StudentID+";";
+						num++;
+						String s = "update studentlist set list="+"'"+slist+"'"+",num="+num+" where id="+StudentID+";";
 						db.executeUpdate(s);
 						//更新老师信息
 						String T_list=rsnt.getString("list");
-						int T_num=rsnt.getInt("num");
-						if(rsnt.getInt("num")==0)
+						if(rsnt.getString("list") == null || rsnt.getString("list").matches("\\s*"))
 						{
 							T_list=StudentID+":W";
 						}
@@ -103,8 +113,7 @@ public class StudentApplyAction {
 						{
 							T_list+=","+StudentID+":W";
 						}
-						T_num++;
-						String t="update teacherlist set list="+"'"+T_list+"'"+",num="+T_num+" where id="+TeacherID+";";
+						String t="update teacherlist set list="+"'"+T_list+"'"+" where id="+TeacherID+";";
 						System.out.println(t);
 						dbt.executeUpdate(t);
 						return "HavaRefresh";

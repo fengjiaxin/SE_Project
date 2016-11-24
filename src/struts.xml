@@ -55,6 +55,14 @@
         	<result name="TeacherDetail">/TeacherPage.jsp</result>
         </action>        
         
+        <action name="StudentAffirm" class="Action.StudentAffirmAction" method="excute">
+        	<result name="Affirm" type="redirectAction">/StudentList.action?Id=${Id}</result>
+        </action>  
+        
+        <action name="StudentList" class="Action.StudentListAction" method="listdisplay">
+        	<result name="ListDisplay">/StudentApplyList.jsp</result>
+        </action>
+        
         <action name="StudentDetail" class="Action.StudentDetailAction" method="excute">
         	<result name="StudentDetail">/StudentPage.jsp</result>
         </action>
