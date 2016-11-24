@@ -113,7 +113,7 @@ public class StudentApplyAction {
 						{
 							T_list+=","+StudentID+":W";
 						}
-						String t="update teacherlist set list="+"'"+T_list+"'"+" where id="+TeacherID+";";
+						String t="update teacherlist set list="+"'"+T_list+"'"+",station="+1+" where id="+TeacherID+";";
 						System.out.println(t);
 						dbt.executeUpdate(t);
 						return "HavaRefresh";

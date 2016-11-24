@@ -92,7 +92,7 @@ public class StudentCancelAction {
 				agree_n--;
 			}
 		}
-		Teacher = "update teacherlist set list = "+"'"+tc_list+"' ,"+"agreenum="+agree_n+" where id =" +TeacherID; //完成2
+		Teacher = "update teacherlist set list = "+"'"+tc_list+"' ,"+"agreenum="+agree_n+",station="+1+" where id =" +TeacherID; //完成2
 		db.executeUpdate(Teacher);
 		return "Cancel";
 	}

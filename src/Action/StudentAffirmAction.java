@@ -65,7 +65,7 @@ public class StudentAffirmAction {
 		{
 			num = RsN.getInt("num");
 			num++;
-			Teacher = "update teacherlist set num = "+num+" where id =" +TeacherID; //完成4
+			Teacher = "update teacherlist set num = "+num+",station="+1+" where id =" +TeacherID; //完成4
 			db.executeUpdate(Teacher);
 	    }
 	    
@@ -119,7 +119,7 @@ public class StudentAffirmAction {
 				agree_n--;
 			}
 		}
-		Teacher = "update teacherlist set list = "+"'"+tc_list+"' ,"+"agreenum="+agree_n+" where id =" +te_id; //完成2
+		Teacher = "update teacherlist set list = "+"'"+tc_list+"' ,"+"agreenum="+agree_n+",station="+1+ "where id =" +te_id; //完成2
 		db.executeUpdate(Teacher);
 	    System.out.println(Teacher);
     }

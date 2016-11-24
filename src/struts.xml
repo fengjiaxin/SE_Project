@@ -51,22 +51,30 @@
         <result name="Search">/StudentInquirydisplay.jsp</result>
         </action>
         
-         <action name="TeacherDetail" class="Action.TeacherDetailAction" method="excute">
+        <action name="TeacherDetail" class="Action.TeacherDetailAction" method="excute">
         	<result name="TeacherDetail">/TeacherPage.jsp</result>
-        </action>        
-        
-        <action name="StudentAffirm" class="Action.StudentAffirmAction" method="excute">
-        	<result name="Affirm" type="redirectAction">/StudentList.action?Id=${Id}</result>
-        </action>  
+        </action>
         
         <action name="StudentList" class="Action.StudentListAction" method="listdisplay">
         	<result name="ListDisplay">/StudentApplyList.jsp</result>
         </action>
         
-        <action name="StudentDetail" class="Action.StudentDetailAction" method="excute">
-        	<result name="StudentDetail">/StudentPage.jsp</result>
-        </action>
-
+        <action name="studentapply" class="Action.StudentApplyAction" method="excute">
+	       <result name="DontApp">/StudentApplyFail.jsp</result>
+	       <result name="HavaRefresh" type="redirectAction">/studentpagedisplay.action?Id=${Id}</result>
+       </action>
+        
+       
+	    <action name="StudentAffirm" class="Action.StudentAffirmAction" method="excute">
+        	<result name="Affirm" type="redirectAction">/StudentList.action?Id=${Id}</result>
+        </action>  
+        
+        <action name="StudentCancel" class="Action.StudentCancelAction" method="excute">
+        	<result name="Cancel" type="redirectAction">/StudentList.action?Id=${Id}</result>
+        </action>  
+        
+        
+        
         <action name="teacherpagedisplay" class="Action.TeacherPageAction" method="Display">
         	<result name="Display">/TeacherPersonalHomepage.jsp</result>
         </action>
@@ -80,12 +88,26 @@
         </action>
         
         <action name="TeacherInquiry" class="Action.TeacherSearchAction" method="excute" >
-        <result name="Search">/TeacherInquirydisplay.jsp</result>
+        	<result name="Search">/TeacherInquirydisplay.jsp</result>
         </action>
         
+        <action name="TeacherList" class="Action.TeacherListAction" method="listdisplay">
+        	<result name="ListDisplay">/TeacherApplyList.jsp</result>
+        </action>
         
-       
-       
+        <action name="StudentDetail" class="Action.StudentDetailAction" method="excute">
+        	<result name="StudentDetail">/StudentPage.jsp</result>
+        </action>
+        
+        <action name="TeacherAgree" class="Action.TeacherToApplyForOperationAction" method="TeacherAgree">
+        	<result name="AgreeFail" >/TeacherAgreeFail.jsp</result>
+        	
+        	<result name="Agree" type="redirectAction">/TeacherList.action?Id=${Id}</result>
+        </action>
+       	
+       	<action name="TeacherReject" class="Action.TeacherToApplyForOperationAction" method="TeacherReject">
+        	<result name="Reject" type="redirectAction">/TeacherList.action?Id=${Id}</result>
+        </action>
     </package>
 
 
