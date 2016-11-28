@@ -135,7 +135,9 @@ public class RegisterAction {
 				                                             +"'"+gender+"'"+","
 				                                             +"'"+getAge()+"'"+","
 				                                             +"'"+getTelephone()+"'"+","
-				                                             +"'"+getEmail()+"'"
+				                                             +"'"+getEmail()+"'"+","
+				                                             +0+","+0
+				                                             
 				                                            
 			                                        +")";
 			    try
@@ -186,8 +188,8 @@ public class RegisterAction {
 										                     +"'"+gender+"'"+","
 										                     +"'"+getAge()+"'"+","
 										                     +"'"+getTelephone()+"'"+","
-										                     +"'"+getEmail()+"'"
-										                     
+										                     +"'"+getEmail()+"'"+","
+										                     +0+","+0  
                                                     +")";
 				try
 				{

@@ -120,6 +120,9 @@ public class TeacherToApplyForOperationAction {
 				}
 				String s = "update studentlist set list="+"'"+string+"'"+",num="+num+" where id="+StudentID+";";
 				sdb.executeUpdate(s);
+				DB d=new DB();
+				String td="update student set InviteStation="+1+" where id="+StudentID+";";
+				d.executeUpdate(td);
 	   }
 		
 			return "Agree";
@@ -170,6 +173,9 @@ public class TeacherToApplyForOperationAction {
 			}
 			String s = "update studentlist set list="+"'"+string+"'"+" where id="+StudentID+";";
 			sdb.executeUpdate(s);
+			DB d=new DB();
+			String td="update student set InviteStation="+1+" where id="+StudentID+";";
+			d.executeUpdate(td);
 		}
 		
 		DB tdb=new DB();

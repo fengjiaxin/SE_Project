@@ -92,8 +92,11 @@ public class StudentCancelAction {
 				agree_n--;
 			}
 		}
-		Teacher = "update teacherlist set list = "+"'"+tc_list+"' ,"+"agreenum="+agree_n+",station="+1+" where id =" +TeacherID; //完成2
+		Teacher = "update teacherlist set list = "+"'"+tc_list+"' ,"+"agreenum="+agree_n+" where id =" +TeacherID; //完成2
 		db.executeUpdate(Teacher);
+		DB d=new DB();
+		String td="update teacher set InviteStation="+1+" where id="+TeacherID+";";
+		d.executeUpdate(td);
 		return "Cancel";
 	}
 }
