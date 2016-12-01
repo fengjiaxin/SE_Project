@@ -135,21 +135,23 @@ public class RegisterAction {
 				                                             +"'"+gender+"'"+","
 				                                             +"'"+getAge()+"'"+","
 				                                             +"'"+getTelephone()+"'"+","
-				                                             +"'"+getEmail()+"'"+","
-				                                             +0+","+0
-				                                             
-				                                            
+				                                             +"'"+getEmail()+"',"
+				                                             +0+","+0+","+0
 			                                        +")";
 			    try
 				{
 				    SQL.executeUpdate(Student);
-				    System.out.println(Student);
+		
 				    String s = "select id from student where user_name='"+getUserName()+"'";
 				    ResultSet R = SQL .executeQuery(s);
 				    
 				    if(R.next())
 				    {
 				    	int id = R.getInt("id");
+				    	DB SDB=new DB();
+				    	String S="insert into studentlist values("+id+","+"null"+","+0+");";
+				    	SDB.executeUpdate(S);
+				    	
 				    	s = "insert into studentlabel values("+id+","
 															  +"null"+","
 															  +"null"+","
@@ -157,10 +159,12 @@ public class RegisterAction {
 															  +"null"+","
 															  +"null"+","
 															  +"null"+")";
-				    	System.out.println(s);
+				    	
+				    	
 				    }
 				    SQL.executeUpdate(s);
-					return "StudentRegisterSuccessed!";
+				    
+				    return "StudentRegisterSuccessed!";
 				}
 			    catch(Exception e)
 				{
@@ -188,16 +192,16 @@ public class RegisterAction {
 										                     +"'"+gender+"'"+","
 										                     +"'"+getAge()+"'"+","
 										                     +"'"+getTelephone()+"'"+","
-										                     +"'"+getEmail()+"'"+","
-										                     +0+","+0  
-                                                    +")";
+										                     +"'"+getEmail()+"',"
+										                     +0+","+0
+                                                    +");";
 				try
 				{
 					SQL.executeUpdate(Teacher);
-					System.out.println(Teacher);
+					
 					String s = "select id from teacher where user_name='"+getUserName()+"'";
 				    ResultSet R = SQL .executeQuery(s);
-				    
+				   
 				    if(R.next())
 				    {
 				    	int id = R.getInt("id");
@@ -209,7 +213,12 @@ public class RegisterAction {
 															  +"null"+","
 															  +"null"+","
 															  +"null"+");";
-				    	System.out.println(s);
+				    	
+				    	DB TDB=new DB();
+				    	String T="insert into teacherlist values("+id+","+"null"+","+0+","+0+");";
+				    	
+				    	TDB.executeUpdate(T);
+				    	
 				    }
 				    SQL.executeUpdate(s);
 				return "TeacherRegisterSuccessed!";

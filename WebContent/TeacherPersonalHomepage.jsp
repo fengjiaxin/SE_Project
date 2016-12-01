@@ -38,17 +38,23 @@
 			    <s:submit class="button" value="查询"></s:submit>
 			 </s:form>
 			</div>
-		      <div class="tab">
-		      <a href=<s:url action="TeacherList">
-		      <s:param name="Id" value="getId()"></s:param>
-			 </s:url>>申请列表</a>
-			 </div>
-
+    <div class="tab">
+		  <s:if test="getApplyStation()=='0'.toString()">
+			    <a href=<s:url action="TeacherList">
+		        <s:param name="Id" value="getId()"></s:param>
+			    </s:url>>申请列表</a>
+		  </s:if>
+		  <s:else> 
+		        <a href=<s:url action="TeacherList">
+			    <s:param name="Id" value="getId()"></s:param>
+				</s:url>><span title="申请列表有更新">申请列表<img src="<%=request.getContextPath()%>/css/1.png"  height="15" width="15"/></span></a>
+		  </s:else>
+    </div>
 			 <div class="tab">
 			 <a href=<s:url action="SystemreCommendation">
 			 </s:url>>系统推荐</a>
 			 </div>
-	     </div>
+	     
 	     
 	    <div class="list">
 			   学院：       <s:property value="Academy"  default=" "/><br>

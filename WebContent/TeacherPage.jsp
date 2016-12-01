@@ -34,9 +34,9 @@
 		   经历:<s:property value="teacher.Experience"  default=" "/><br>
 		  荣誉 :<s:property value="teacher.Honor"  default=" "/><br> 
 		  招生需求：<s:property value="teacher.Needs"  default=" "/>
-		  <s:form action="studentapply">
-		  	<s:textfield name="StudentId" type="hidden" value="%{#request.StudentId}"></s:textfield>
-		  	<s:textfield name="TeacherId" type="hidden" value="%{#request.TeacherId}"></s:textfield>
+		  <s:form action="studentapply">                                  
+		  	<s:textfield name="StudentId" type="hidden" value="%{#request.StudentID}"></s:textfield>
+		  	<s:textfield name="TeacherId" type="hidden" value="%{#request.TeacherID}"></s:textfield>
 		  	<s:submit class="button" value="申请"></s:submit>
 		  </s:form>
 		  </div>

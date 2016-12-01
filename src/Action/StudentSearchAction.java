@@ -105,6 +105,7 @@ public class StudentSearchAction extends Student{
 		}
 		HttpServletRequest request = ServletActionContext.getRequest();
     	request.setAttribute("List", TeacherlList);
+    	request.setAttribute("Id", getId());
 		return "Search";
 	}
 	

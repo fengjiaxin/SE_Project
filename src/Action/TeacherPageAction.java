@@ -76,6 +76,7 @@ public class TeacherPageAction extends Teacher{
 			setEmail(r.getString("email"));
 			setSex(r.getString("sex"));
 			setTelephone(r.getString("telephone"));
+			setApplyStation(r.getString("ApplyStation"));
 		}
 		
 		s = "select * from teacherlabel where id=" + getId();

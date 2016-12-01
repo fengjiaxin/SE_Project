@@ -43,6 +43,10 @@ public class TeacherListAction extends Teacher{
 	
 	public String listdisplay() throws Exception
 	{
+		DB db = new DB();
+		String t="update teacher set ApplyStation="+"0"+" where id="+getId()+";";
+		System.out.println(t);
+		db.executeUpdate(t);
 		Map<String,String> StatusMap = new HashMap<String,String>();
 		StatusMap.put("W", "未选择");
 		StatusMap.put("Y", "已同意");
@@ -58,7 +62,16 @@ public class TeacherListAction extends Teacher{
 			setEmail(r.getString("email"));
 			setSex(r.getString("sex"));
 			setTelephone(r.getString("telephone"));
+			setApplyStation(r.getString("ApplyStation"));
 		}
+	
+			
+		
+		
+		
+		
+		
+		
 		
 		s = "select * from teacherlist where id="+getId();
 		r = mydb.executeQuery(s);

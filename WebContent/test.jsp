@@ -10,28 +10,6 @@
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/css/backround.css"/>
 </head>
 <body>
-
-	<div>
-	 
-
-	 <s:if test="2==2">
-	 <div>
-	     申请列表
-	 </div> 
-	 </s:if>
-	 <s:else> 
-	<s:if test="2==2"> 
-	<div >
-	
-	<span title=<s:property value="student.Name"  default="您有未读取的新消息"/>><s:property value="student.Name"  default="申请列表 "/></span><img src="<%=request.getContextPath()%>/css/1.png"  height="15" width="15"/>
-	  
-	</div>
-	</s:if>
-	
-	</s:else>
-	<s:if test="3=">
-	<s:property value="3"/>
-	 </s:if>
-	 </div>
+    <span title="bob">蓝色</span> 
 </body>
 </html>

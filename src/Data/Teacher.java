@@ -7,7 +7,7 @@ public class Teacher {
 	private String Telephone;
 	private String Age;
 	private String Sex;
-	
+	private String    ApplyStation;
 	
 	private String Academy;
 	private String Research;
@@ -16,6 +16,14 @@ public class Teacher {
 	private String Honor;
 	private int NeedNum;
 	private String Needs;
+	public void setApplyStation(String ApplyStation)
+	{
+		this.ApplyStation=ApplyStation;
+	}
+	public String getApplyStation()
+	{
+		return this.ApplyStation;
+	}
 	public int getId() {
 		return Id;
 	}

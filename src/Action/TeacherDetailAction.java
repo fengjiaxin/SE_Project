@@ -68,6 +68,8 @@ public class TeacherDetailAction  {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		request.setAttribute("TeacherID", TeacherID);
     	request.setAttribute("StudentID", StudentID);
+    	System.out.println("StudentID="+StudentID);
+    	System.out.println("TeacherID="+TeacherID);
 		return "TeacherDetail";
     }
 		

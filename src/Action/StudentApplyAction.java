@@ -30,6 +30,8 @@ public class StudentApplyAction {
 		TeacherID=ServletActionContext.getRequest().getParameter("TeacherId");
 		StudentID=ServletActionContext.getRequest().getParameter("StudentId");
 		setId(Integer.parseInt(StudentID));
+		System.out.println(TeacherID);
+		System.out.println(StudentID);
 		DB dbs=new DB();
 		String ss="select* from student where id="+StudentID;
 		ResultSet rss=dbs.executeQuery(ss);
@@ -40,7 +42,7 @@ public class StudentApplyAction {
 				return "DontApp";
 			}
 		}
-		
+		System.out.println("1V1 ");
 		String str="select* from studentlist where id="+StudentID;
 		ResultSet rsn=db.executeQuery(str);
         if(rsn.next())//首先找到学生
@@ -50,8 +52,10 @@ public class StudentApplyAction {
 			{
 				return "DontApp";
 			}
+			
 			else//说明学生可以向导师发出申请
 			{
+				System.out.println(" 2V2 ");
 				DB dbt=new DB();
 				String strt="select* from teacherlist where id="+TeacherID;
 				ResultSet rsnt=dbt.executeQuery(strt);
@@ -62,7 +66,6 @@ public class StudentApplyAction {
 					String st="select* from teacherlabel where id="+TeacherID;
 					ResultSet rstnr=dbtr.executeQuery(st);
 					if(rstnr.next())
-					
 					{
 						n=rstnr.getInt("neednum");
 					}
@@ -73,6 +76,7 @@ public class StudentApplyAction {
 					}
 					else
 					{
+						System.out.println(" 3V3 ");
 						int length=0;
 						int num=rsn.getInt("num");
 						String slist=rsn.getString("list");	
@@ -90,6 +94,7 @@ public class StudentApplyAction {
 								}
 							}
 						}
+						System.out.println(" 4V4 ");
 						//往下执行说明可以进行申请
 						//首先更新学生信息
 						if(num==0)
@@ -116,7 +121,8 @@ public class StudentApplyAction {
 						String t="update teacherlist set list="+"'"+T_list+"'"+" where id="+TeacherID+";";
 						dbt.executeUpdate(t);
 						DB d=new DB();
-						String td="update teacher set InviteStation="+1+" where id="+TeacherID+";";
+						String td="update teacher set ApplyStation="+1+" where id="+TeacherID+";";
+						System.out.println(td);
 						d.executeUpdate(td);
 						return "HavaRefresh";
 					}
