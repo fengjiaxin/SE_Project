@@ -31,6 +31,7 @@ public class StudentInviteAction {
 			setId(Integer.parseInt(TeacherID));
 			
 			String teacher_id_list = null;
+			String[] tc_id;
 			String Student = "select * from studentlist where id="+StudentID;
 			ResultSet Rs=db.executeQuery(Student);
 			if(Rs.next())
@@ -41,9 +42,13 @@ public class StudentInviteAction {
 			{
 				teacher_id_list = TeacherID;
 			}
-			else                               //非空加逗号
+			else                               //非空先判断此ID是否重复，不重复加逗号后添加
 			{
-				teacher_id_list = teacher_id_list + "," + TeacherID;
+				int i = 0;
+				tc_id = teacher_id_list.split(",");
+				for(i = 0; !tc_id[i].equals(TeacherID); i++)
+				if(i == tc_id.length)           //说明没有重复的TeacherID
+				    teacher_id_list = teacher_id_list + "," + TeacherID;
 			}
 			Student = "update studentlist set teacherId = "+"'"+teacher_id_list+"' where id =" +StudentID; 
 			db.executeUpdate(Student);
