@@ -7,9 +7,11 @@ import org.apache.struts2.ServletActionContext;
 import DBcon.DB;
 
 public class StudentAffirmAction {
-	/*确认后修改1.student的状态栏   2.删除studentlist中的多余项，保留确认项  
+	/*学生点击确定后的操作*/
+	/*修改1.student的状态栏   2.删除studentlist中的多余项，保留确认项  
 	 3.判断是否修改teacher的状态栏  4.修改teacherlist状态，已确认数量加一
-	 5.确定后删除teacherlist中其他老师list中该同学的申请，待定的直接删，已同意的agreenum-- */
+	 5.确定后删除teacherlist中其他老师list中该同学的申请，待定的直接删，已同意的agreenum-- 
+	 6.删除studentlist中的teacherId（清空学生的邀请列表）*/
 	private int Id;
 	 public void setId(int Id)
 	 {
@@ -39,7 +41,6 @@ public class StudentAffirmAction {
 		ResultSet Rs=db.executeQuery(Student);
 	    if(Rs.next())
 		{
-	    	
 	    	str_list= Rs.getString("list");
 	    }
 		
@@ -50,7 +51,7 @@ public class StudentAffirmAction {
 			String[] s = s_l[i].split(":");
 			if(s[0].equals(TeacherID))             //找到确定的导师
 			{
-				Student = "update studentlist set list = "+"'"+s[0]+":Q"+"',num = 1 where id =" +StudentID; //完成2
+				Student = "update studentlist set list = "+"'"+s[0]+":Q"+"',num = 1 , teacherId = null where id =" +StudentID; //完成2
 				db.executeUpdate(Student);
 			}
 			else                         //删除其他的导师
@@ -77,7 +78,7 @@ public class StudentAffirmAction {
 	    }
 	    if(num == need)
 	    {
-	    	Teacher = "update teacher set status ="+1+",InviteStation="+1+" where id ="+TeacherID; //完成3
+	    	Teacher = "update teacher set status ="+1+" where id ="+TeacherID; //完成3
 	    	db.executeUpdate(Teacher);
 	    }
 	    
