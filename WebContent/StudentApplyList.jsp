@@ -5,55 +5,68 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>StudentApplyList</title>
-<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/css/backround.css"/>
+<title>Student System</title>
+<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/css/System.css"/>
 </head>
-
-
-    
-    <div class="header">
-	    <a href=<s:url value="studentpagedisplay.action">
-	    		<s:param name="Id" value="getId()"></s:param>
-	    		</s:url>><img src="<%=request.getContextPath()%>/css/homea1.jpg">
-	</a>
-	     姓名：<s:property value="Name"  default=" "/>
-	    年龄：<s:property value="Age"  default=" "/>
-	    性别：<s:property value="Sex"  default=" "/><br>
-	   &nbsp;&nbsp;&nbsp;&nbsp;邮箱：<s:property value="Email"  default=" "/><br>
-	    &nbsp;&nbsp;&nbsp;&nbsp;电话：<s:property value="Telephone"  default=" "/>
-    </div>
-    
-	<div class="main" >
-	     <div class="option">
-	     
-	     <div class="tab">
-		      <a href=
+<body class="systemback">
+	<div class="top" style="display:block;">
+		<div class="logo">
+			<div class="topright">
+				<div class="welcome">
+				<br>您好！  <s:property value="Name"  default="ls"/>同学<br>
+	    
+				电话：<s:property value="Telephone"  default="435455"/><br>
+				邮箱：<s:property value="Email"  default="344545"/>
+				
+				</div>
+				<div id="taskbar_right">
+				
+				<a class="btnedit" href=<s:url value="toStudentEdit.action">
+	    			<s:param name="Id" value="getId()"></s:param>
+	    			</s:url>>编辑
+				</a>
+				
+				<a class="btnhome" href=<s:url value="studentpagedisplay.action">
+	    			<s:param name="Id" value="getId()"></s:param>
+	    			</s:url>>主页
+				</a>
+				<a class="btnquit" href=<s:url value="return.action"></s:url>>退出
+				</a>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="top-nav">
+		<div class="navlist">
+		<a class="nav-btn" href=
 		      <s:url action="StudentCompletePersonalInformation">
 		      <s:param name="Id" value="getId()"></s:param>
-			  </s:url>>个人信息完善</a>
-			 </div>
-		     <div class="tab">
-		     <s:form action="StudentInquiry" method="post">
-			    <s:select name="AcademyId" list="Mylist" label="学院" listValue="Name" listKey="id"></s:select>
-			    <s:textfield name="Id" type="hidden" value="%{#request.Id}"></s:textfield>
-			    <s:submit class="button" value="查询"></s:submit>
-			 </s:form>
-			</div>
-		      <div class="tab">
-		      <a href=<s:url action="StudentList">
+			  </s:url>>信息完善</a>
+		
+		<a class="nav-btn" href=
+		      <s:url action="toStudentInquiry">
+		      <s:param name="Id" value="getId()"></s:param>
+			  </s:url>>查询信息</a>
+		
+		
+		<a class="nav-btn" href=<s:url action="SystemreCommendation">
+			 </s:url>>系统推荐</a>
+		<a class="nav-btn" href=<s:url action="StudentList">
 		      <s:param name="Id" value="getId()"></s:param>
 			 </s:url>>申请列表</a>
-			 </div>
-
-			 <div class="tab">
-			 <a href=<s:url action="SystemreCommendation">
-			 </s:url>>系统推荐</a>
-			 </div>
-	     </div>
-	     
-	    <div class="list">
-	    <table border="1" width="75%" cellpadding="0" cellspacing="0" align="center">  
-			<tr style="background-color: yellow">
+			
+		<a class="nav-btn" href=<s:url action="StudentInviteList">
+		      <s:param name="Id" value="getId()"></s:param>
+			 </s:url>>邀请列表</a>
+		</div>
+	</div>
+	
+	<div class="Contentbox">
+		
+	    <table border="1" width="100%" cellpadding="0" cellspacing="0" align="center">  
+			<tr style="background-color: #D1E9E9">
 				<td align="center">导师姓名</td>
 				<td align="center">申请状态</td>
 				<td align="center">操作</td>
@@ -98,7 +111,7 @@
 				</tr>
 			</s:iterator>
 		</table>
-	    </div>
+	    
 	</div>
-	<div class="footer">@版权归 先锋战队所有 <br>详情请咨询454285842@qq.com </div>
-
+</body>
+</html>

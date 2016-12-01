@@ -5,69 +5,63 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Teacher message update</title>
-<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/css/backround.css"/>
+<title>Teacher System</title>
+<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/css/System.css"/>
 </head>
-
-
-    
-    <div class="header">
-	     <a href=<s:url value="teacherpagedisplay.action">
-	    		<s:param name="Id" value="getId()"></s:param>
-	    		</s:url>><img src="<%=request.getContextPath()%>/css/homea1.jpg">
-	</a>
-	     姓名：<s:property value="Name"  default=" "/>
-	    年龄：<s:property value="Age"  default=" "/>
-	    性别：<s:property value="Sex"  default=" "/><br>
-	   &nbsp;&nbsp;&nbsp;&nbsp;邮箱：<s:property value="Email"  default=" "/><br>
-	    &nbsp;&nbsp;&nbsp;&nbsp;电话：<s:property value="Telephone"  default=" "/>
-    </div>
-    
-	<div class="main" >
-	     <div class="option">
-	     <div class="tab">
-		      <a href=
+<body class="systemback">
+	<div class="top" style="display:block;">
+		<div class="logo">
+			<div class="topright">
+				<div class="welcome">
+				<br>您好！  <s:property value="Name"  default="ls"/>老师<br>
+	    		
+	    		电话：<s:property value="Telephone"  default="435455"/><br>
+				邮箱：<s:property value="Email"  default="344545"/>
+				
+				
+				</div>
+				<div id="taskbar_right">
+				
+				<a class="btnedit" href=<s:url value="teacherpagedisplay.action">
+	    			<s:param name="Id" value="getId()"></s:param>
+	    			</s:url>>编辑
+				</a>
+				
+				<a class="btnhome" href=<s:url value="teacherpagedisplay.action">
+	    			<s:param name="Id" value="getId()"></s:param>
+	    			</s:url>>主页
+				</a>
+				<a class="btnquit" href=<s:url value="return.action"></s:url>>退出
+				</a>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="top-nav">
+		<div class="navlist">
+		<a class="nav-btn" href=
 		      <s:url action="TeacherCompletePersonalInformation">
 		      <s:param name="Id" value="getId()"></s:param>
-			  </s:url>>个人信息完善</a>
-			 </div>
-		     <div class="tab">
-		     <s:form action="TeacherInquiry" method="post">
-			    <s:select name="AcademyId" list="Mylist" label="学院" listValue="Name" listKey="id"></s:select>
-			    <s:textfield name="Id" type="hidden" value="%{#request.Id}"></s:textfield>
-			    <s:submit class="button" value="查询"></s:submit>
-			 </s:form>
-			</div>
-    <div class="tab">
-		  <s:if test="getApplyStation()=='0'.toString()">
-			    <a href=<s:url action="TeacherList">
-		        <s:param name="Id" value="getId()"></s:param>
-			    </s:url>>申请列表</a>
-		  </s:if>
-		  <s:else> 
-		        <a href=<s:url action="TeacherList">
-			    <s:param name="Id" value="getId()"></s:param>
-				</s:url>><span title="申请列表有更新">申请列表<img src="<%=request.getContextPath()%>/css/1.png"  height="15" width="15"/></span></a>
-		  </s:else>
-    </div>
-			 <div class="tab">
-			 <a href=<s:url action="SystemreCommendation">
+			  </s:url>>信息完善</a>
+		
+		<a class="nav-btn" href=
+		      <s:url action="toTeacherInquiry">
+		      <s:param name="Id" value="getId()"></s:param>
+			  </s:url>>查询信息</a>
+		
+		
+		<a class="nav-btn" href=<s:url action="SystemreCommendation">
 			 </s:url>>系统推荐</a>
-			 </div>
-	     
-	     
-	    <div class="list">
-			   学院：       <s:property value="Academy"  default=" "/><br>
-			    研究方向： <s:property value="Research"  default="  "/><br>
-			   论文：  <s:property value="Article"  default=" "/><br>
-			   经历：  <s:property value="Experience"  default=" "/><br>
-			   荣誉：  <s:property value="Honor"  default=" "/><br> 
-			   招生人数： <s:property value="NeedNum"  default=" "/><br>
-			  招生需求：<s:property value="Needs"  default=" "/> 
-	    </div>
+		<a class="nav-btn" href=<s:url action="TeacherList">
+		      <s:param name="Id" value="getId()"></s:param>
+			 </s:url>>申请列表</a>
+		</div>
 	</div>
-	<div class="footer">@版权归 先锋战队所有 <br>详情请咨询454285842@qq.com </div>
-
-
-
-
+	
+	<div class="Contentbox">
+		<div class="index_bg"></div>
+	</div>
+</body>
+</html>

@@ -7,6 +7,28 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Student System</title>
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/css/System.css"/>
+
+<script type="text/javascript">
+ function checkpwd(){
+  var p1=document.form1.Password.value;//获取密码框的值
+  var p2=document.form1.Password2.value;//获取重新输入的密码值
+  if(p1==""){
+   alert("请输入密码！");//检测到密码为空，提醒输入//
+   document.form1.Password.focus();//焦点放到密码框
+   return false;//退出检测函数
+  }
+   if(p1!= p2)
+   {//判断两次输入的值是否一致，不一致则显示错误信息
+	   document.getElementById("msg").innerHTML="两次输入密码不一致，请重新输入";//在div显示错误信息
+	   return false;
+	}
+   else
+  {
+   //密码一致，可以继续下一步操作 
+  }
+	 
+  }
+</script>
 </head>
 <body class="systemback">
 	<div class="top" style="display:block;">
@@ -14,8 +36,8 @@
 			<div class="topright">
 				<div class="welcome">
 				<br>您好！  <s:property value="Name"  default="ls"/>同学<br>
-	    	
-	    	电话：<s:property value="Telephone"  default="435455"/><br>
+	    
+	    		电话：<s:property value="Telephone"  default="435455"/><br>
 				邮箱：<s:property value="Email"  default="344545"/>
 				
 				
@@ -64,34 +86,26 @@
 	</div>
 	
 	<div class="Contentbox">
-				<s:form class="formsty" action="StudentUpdate" method="post" theme="simple">
-				<s:textfield name="Id" type="hidden" value="%{#request.Id}" theme="simple"></s:textfield>
-				
-			     	<h3>基本信息</h3>
-			     	请选择学院和专业：<s:doubleselect theme="simple" name="Academy" doubleName="Major"
-					         list="Mylist" doubleList="Mymap.get(top.Id)"
-					         listKey="Id" listValue="Name"
-					         doubleListKey="Id" doubleListValue="Name" 
-					         >
-				 	</s:doubleselect><br>
-				    民族:<s:textfield name="Nation"  theme="simple"></s:textfield><br>
-
-				    籍贯:<s:textfield name="NativaPlace" theme="simple"></s:textfield><br>
-			    
-			    
-			    
-			    	<h3>本科成绩</h3>
-				 	分数:<s:textfield name="Point" label="分数" theme="simple"></s:textfield>
-				
-				
-				
-					<h3>其它</h3>
-					 兴趣方向:<s:textfield name="Interest"  theme="simple"></s:textfield><br>
-					 荣誉:<s:textarea name="Honor"  theme="simple"></s:textarea><br>
-					 经历:<s:textarea name="Experience"  theme="simple"></s:textarea><br>
-				 
-		         <s:submit value="更新"></s:submit>
-		     </s:form>
+		<div class="editform">
+		<s:form action="studentedit" name="form1" method="post">
+			<s:textfield name="Id" type="hidden" value="Id"></s:textfield>
+			<s:textfield type="text" name="UserName" label="用户名：" value="%{UsrName}" readonly="true"></s:textfield>
+			<s:textfield name="StudentId" value="%{StudentId}" readonly="true" label="学号："></s:textfield>
+			
+			
+			
+			
+			<s:textfield name="Name" value="%{Name}" label="真实姓名："></s:textfield>
+			<s:radio list="#{'1':'男','0':'女'}" name="Sex" value='1' label="性别："></s:radio>
+			<s:textfield name="Age" value="%{Age}" label="年龄："></s:textfield>
+			<s:textfield name="Telephone" value="%{Telephone}" label="手机号："></s:textfield>
+			<s:textfield name="Email" value="%{Email}" label="邮箱："></s:textfield>
+			<s:textfield type="password" name="Password" value="%{Password}" label="密码："></s:textfield>
+			<s:textfield type="password" name="Password2" label="确认密码：" onchange="checkpwd()" ></s:textfield>
+			<s:submit value="编辑"></s:submit>
+		</s:form>
+		</div>
+		<div class="msgsty" id="msg"></div>
 	</div>
 </body>
 </html>

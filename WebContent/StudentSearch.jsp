@@ -15,13 +15,14 @@
 				<div class="welcome">
 				<br>您好！  <s:property value="Name"  default="ls"/>同学<br>
 	    
+	    		电话：<s:property value="Telephone"  default="435455"/><br>
 				邮箱：<s:property value="Email"  default="344545"/>
-				电话：<s:property value="Telephone"  default="435455"/>
+				
 				
 				</div>
 				<div id="taskbar_right">
 				
-				<a class="btnedit" href=<s:url value="studentpagedisplay.action">
+				<a class="btnedit" href=<s:url value="toStudentEdit.action">
 	    			<s:param name="Id" value="getId()"></s:param>
 	    			</s:url>>编辑
 				</a>
@@ -56,58 +57,23 @@
 		<a class="nav-btn" href=<s:url action="StudentList">
 		      <s:param name="Id" value="getId()"></s:param>
 			 </s:url>>申请列表</a>
+		<a class="nav-btn" href=<s:url action="StudentInviteList">
+		      <s:param name="Id" value="getId()"></s:param>
+			 </s:url>>邀请列表</a>
 		</div>
 	</div>
 	
 	<div class="Contentbox">
-		 <div class="list">
-	    <table border="1" width="100%" cellpadding="0" cellspacing="0" align="center">  
-			<tr style="background-color: #D1E9E9">
-				<td align="center">导师姓名</td>
-				<td align="center">申请状态</td>
-				<td align="center">操作</td>
-				
-			</tr>  
-			<s:iterator value="#request.TeacherList"> 
-				<tr>
-					<td  class="name" align="center">
-						<a href=
-							<s:url value="TeacherDetail.action">
-								<s:param name="TeacherId" value="Id"/>
-								<s:param name="StudentId" value="%{#request.Id}"/>
-							</s:url>>
-							<s:property value="Name"/>
-						</a>
-					</td>
-					<td align="center">					
-							<s:property value="%{#request.Map[Status]}"/>
-					</td>
-					<td class="apply" align="center">
-						<s:if test="Status == 'T'.toString()">
-							<a  href=
-							<s:url value="StudentAffirm.action">
-								<s:param name="TeacherId" value="Id"/>
-								<s:param name="StudentId" value="%{#request.Id}"/>
-							</s:url>>
-							确认
-							</a>
-						</s:if>
-						<s:else> </s:else>
-						<s:if test="Status == 'Q'.toString()"> </s:if>
-						<s:else>
-							<a class="apply" href=
-							<s:url value="StudentCancel.action">
-								<s:param name="TeacherId" value="Id"/>
-								<s:param name="StudentId" value="%{#request.Id}"/>
-							</s:url>>
-							取消
-							</a>
-						</s:else>
-					</td>
-				</tr>
-			</s:iterator>
-		</table>
-	    </div>
+		
+		<div class="searchform">
+			<img src="<%=request.getContextPath()%>/css/search.png">
+			<s:form action="StudentInquiry" method="post">
+				    学院：<s:select theme="simple" name="AcademyId" list="Mylist" listValue="Name" listKey="id"></s:select>
+				    	<s:textfield theme="simple" class="nameinput" name="TeacherName" value="输入导师姓名，空则只按学院查询" onfocus="if(value=='输入导师姓名，空则只按学院查询') {value=''}"></s:textfield>
+				    <s:textfield theme="simple" name="Id" type="hidden" value="%{#request.Id}"></s:textfield>
+				    <s:submit theme="simple" class="btnsubmit" value="查询"></s:submit>
+			</s:form>
+		</div>
 	</div>
 </body>
 </html>

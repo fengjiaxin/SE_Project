@@ -162,9 +162,9 @@ body {
     position: absolute;
     right: 280px;
     padding-right: 11px;
-    line-height: 15px;
+    line-height: 12px;
     color: #d2e6fb;
-    font-size: 12px;
+    font-size: 10px;
     width:200px;
 }
 
@@ -237,10 +237,80 @@ font-size: 20px;
 
 .name a:link {color:#005AB5;}     
 .name a:visited {color:#750075;} 
-.name a:hover {color:white;} 
+.name a:hover {color:blue;} 
 .name a:active {color:#0000FF;}
 .apply  a:link {color:black;text-decoration:none;}   
 	   
 .apply a:visited {color:#00FF00;}  
 .apply a:hover {color:#FF0000;}  
-.apply a:active {color:#0000FF;} 
+.apply a:active {color:#0000FF;}
+
+
+.searchform
+{
+	width: 100%;
+    min-height: 293px;
+    padding-top:100px;
+    height: auto;
+    text-align:center;
+    font-size: 30px;
+}
+.searchform select
+{
+	height:36px;
+}
+
+.nameinput
+{
+	height:30px;
+	width:200px;
+}
+
+.btnsubmit
+{
+	height:36px;
+	width:70px;
+	color:white;
+	border: 1px solid #38f;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: rgb(51, 136, 255);
+    border-right-color: rgb(51, 136, 255);
+    border-bottom-color: rgb(51, 136, 255);
+    border-left-color: rgb(51, 136, 255);
+    -moz-border-top-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    border-image-source: none;
+    border-image-slice: 100% 100% 100% 100%;
+    border-image-width: 1 1 1 1;
+    border-image-outset: 0 0 0 0;
+    border-image-repeat: stretch stretch;
+border-bottom: 1px solid #2e7ae5;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(46, 122, 229);
+background-color: #38f;
+}
+
+
+.editform
+{
+	width:300px;
+	height:290px;
+	
+}
+.msgsty
+{
+	
+	width:333px;
+	color:red;
+	
+}
