@@ -108,6 +108,39 @@
        	<action name="TeacherReject" class="Action.TeacherToApplyForOperationAction" method="TeacherReject">
         	<result name="Reject" type="redirectAction">/TeacherList.action?Id=${Id}</result>
         </action>
+        
+        <action name="toStudentInquiry" class="Action.toStudentInquiryAction" method="excute">
+        	<result name="toStudentInquiry">/StudentSearch.jsp</result>
+        </action>
+        
+        <action name="toStudentEdit" class="Action.toStudentEditAction" method="excute">
+        	<result name="toStudentEdit">/StudentEdit.jsp</result>
+        </action>
+        
+        <action name="studentedit" class="Action.StudentEditAction" method="excute">
+        	<result name="StudentEdit" type="redirectAction">/studentpagedisplay.action?Id=${Id}</result>
+        </action>
+        
+         <action name="teacherask" class="Action.TeacherInviteAction" method="excute">
+         	<result name="InviteFail">/InviteFail.jsp</result>
+        	<result name="Invite" type="redirectAction">/teacherpagedisplay.action?Id=${Id}</result>
+        </action>
+        
+        <action name="StudentInviteList" class="Action.InviteAction" method="InviteListDisplay">
+        	<result name="InviteListDisplay">/StudentInviteList.jsp</result>
+        </action>
+         
+         <action name="StudentInviteCancel" class="Action.StudentInviteCancelAction" method="excute">
+         	<result name="InviteCancel" type="redirectAction">/StudentInviteList.action?Id=${Id}</result>
+         </action>
+       
+       	<action name="toTeacherInquiry" class="Action.toTeacherInquiryAction" method="excute">
+       		<result name="toTeacherInquiry">/TeacherSearch.jsp</result>
+       	</action>
+       	
+       	<action name="studentedit" class="Action.StudentEditAction" method="excute">
+       		<result name="EditSuccess" type="redirectAction">/studentpagedisplay.action?Id=${Id}</result>
+       	</action>
     </package>
 
 
