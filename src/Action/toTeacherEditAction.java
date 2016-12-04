@@ -7,22 +7,21 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
 
 import DBcon.DB;
-import Data.Student;
+import Data.Teacher;
 
-public class toStudentEditAction extends Student{
+public class toTeacherEditAction extends Teacher {
 	private String UsrName;
-	private String StudentId;
 	private String Password;
 	public String excute() throws Exception
 	{
 		DB mydb = new DB();
-		String s2 ="select * from student where id=" + getId();
+		String s2 ="select * from teacher where id=" + getId();
+		System.out.println(getId());
 		ResultSet r2=mydb.executeQuery(s2);
 		if(r2.next())
 		{
 			setId(getId());
 			setUsrName(r2.getString("user_name"));
-			setStudentId(r2.getString("student_id"));
 			setPassword(r2.getString("password"));
 			setName(r2.getString("name"));
 			setAge(r2.getString("age"));
@@ -31,9 +30,9 @@ public class toStudentEditAction extends Student{
 			setTelephone(r2.getString("telephone"));
 		}
 		HttpServletRequest request = ServletActionContext.getRequest();
-		request.setAttribute("Id ", StudentId);
+		request.setAttribute("Id ", getId());
 
-		return "toStudentEdit";
+		return "toTeacherEdit";
 	}
 
 
@@ -47,16 +46,6 @@ public class toStudentEditAction extends Student{
 	}
 
 
-	public String getStudentId() {
-		return StudentId;
-	}
-
-
-	public void setStudentId(String studentId) {
-		StudentId = studentId;
-	}
-
-
 	public String getPassword() {
 		return Password;
 	}
@@ -67,3 +56,11 @@ public class toStudentEditAction extends Student{
 	}
 	
 }
+
+	
+	
+	
+	
+	
+
+

@@ -88,7 +88,7 @@
 	<div class="Contentbox">
 		<div class="editform">
 		<s:form action="studentedit" name="form1" method="post">
-			<s:textfield name="Id" type="hidden" value="Id"></s:textfield>
+			<s:textfield name="Id" type="hidden" value="%{#request.Id}"></s:textfield>
 			<s:textfield type="text" name="UserName" label="用户名：" value="%{UsrName}" readonly="true"></s:textfield>
 			<s:textfield name="StudentId" value="%{StudentId}" readonly="true" label="学号："></s:textfield>
 			

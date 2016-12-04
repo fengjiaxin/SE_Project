@@ -7,6 +7,27 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Teacher System</title>
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/css/System.css"/>
+<script type="text/javascript">
+ function checkpwd(){
+  var p1=document.form1.Password.value;//获取密码框的值
+  var p2=document.form1.Password2.value;//获取重新输入的密码值
+  if(p1==""){
+   alert("请输入密码！");//检测到密码为空，提醒输入//
+   document.form1.Password.focus();//焦点放到密码框
+   return false;//退出检测函数
+  }
+   if(p1!= p2)
+   {//判断两次输入的值是否一致，不一致则显示错误信息
+	   document.getElementById("msg").innerHTML="两次输入密码不一致，请重新输入";//在div显示错误信息
+	   return false;
+	}
+   else
+  {
+   //密码一致，可以继续下一步操作 
+  }
+	 
+  }
+</script>
 </head>
 <body class="systemback">
 	<div class="top" style="display:block;">
@@ -22,7 +43,7 @@
 				</div>
 				<div id="taskbar_right">
 				
-				<a class="btnedit" href=<s:url value="toTeacherEdit.action">
+				<a class="btnedit" href=<s:url value="teacherpagedisplay.action">
 	    			<s:param name="Id" value="getId()"></s:param>
 	    			</s:url>>编辑
 				</a>
@@ -67,6 +88,21 @@
 		      
 			
 		</div>
+	</div>
+	<div class="editform">
+		<s:form action="teacheredit" name="form1" method="post">
+			<s:textfield name="Id" type="hidden" value="%{#request.Id}"></s:textfield>
+			<s:textfield type="text" name="UserName" label="用户名：" value="%{UsrName}" readonly="true"></s:textfield>
+			
+			<s:textfield name="Name" value="%{Name}" label="真实姓名："></s:textfield>
+			<s:radio list="#{'1':'男','0':'女'}" name="Sex" value='1' label="性别："></s:radio>
+			<s:textfield name="Age" value="%{Age}" label="年龄："></s:textfield>
+			<s:textfield name="Telephone" value="%{Telephone}" label="手机号："></s:textfield>
+			<s:textfield name="Email" value="%{Email}" label="邮箱："></s:textfield>
+			<s:textfield type="password" name="Password" value="%{Password}" label="密码："></s:textfield>
+			<s:textfield type="password" name="Password2" label="确认密码：" onchange="checkpwd()" ></s:textfield>
+			<s:submit value="编辑"></s:submit>
+		</s:form>
 	</div>
 	
 	<div class="Contentbox">

@@ -1,13 +1,10 @@
 package Action;
-
 import org.apache.struts2.ServletActionContext;
 
 import DBcon.DB;
-
-public class StudentEditAction {
+public class TeacherEditAction {
 	private String Id;
 	private String UserName;
-	private String StudentId;
 	
 	private String Password;
 	
@@ -34,12 +31,6 @@ public class StudentEditAction {
 	}
 	public void setPassword(String password) {
 		Password = password;
-	}
-	public String getStudentId() {
-		return StudentId;
-	}
-	public void setStudentId(String studentId) {
-		StudentId = studentId;
 	}
 	public String getEmail() {
 		return Email;
@@ -85,7 +76,7 @@ public class StudentEditAction {
 		 {
 			 gender="Ů";
 		 }
-		 String s="update student set password='"+getPassword()+"',"
+		 String s="update teacher set password='"+getPassword()+"',"
 				 					  +"email='"+getEmail()+"',"
 				 					  +"name='"+getName()+"',"
 				 					  +"sex='"+gender+"',"
@@ -93,8 +84,9 @@ public class StudentEditAction {
 				 					  +"age="+getAge()
 				 					  +" where id="+getId();
 		 mydb.executeUpdate(s);
+		 System.out.println(s);
 		 return "EditSuccess";
 	}
 		
-	
+
 }
