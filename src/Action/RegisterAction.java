@@ -197,6 +197,7 @@ public class RegisterAction {
                                                     +");";
 				try
 				{
+					System.out.println(Teacher);
 					SQL.executeUpdate(Teacher);
 					
 					String s = "select id from teacher where user_name='"+getUserName()+"'";

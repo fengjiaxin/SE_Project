@@ -47,6 +47,8 @@ public class toStudentInquiryAction extends Student{
 			setEmail(r2.getString("email"));
 			setSex(r2.getString("sex"));
 			setTelephone(r2.getString("telephone"));
+			setInvitStation(r2.getString("InvitStation"));
+			setApplyStation(r2.getString("ApplyStation"));
 		}
 		
 		s2 = "select * from studentlabel where id=" + getId();

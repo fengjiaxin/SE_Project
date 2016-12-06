@@ -53,8 +53,8 @@ public class StudentDetailAction {
 			student.setHonor(rsn1.getString("honor"));
 		}
 		HttpServletRequest request = ServletActionContext.getRequest();
-		request.setAttribute("TeacherID", TeacherID);
-    	request.setAttribute("StudentID", StudentID);
+		request.setAttribute("TeacherId", TeacherID);
+    	request.setAttribute("StudentId", StudentID);
 		
 		return "StudentDetail";
 	}

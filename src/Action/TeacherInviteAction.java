@@ -29,6 +29,7 @@ public class TeacherInviteAction {
 			String StudentID;	    	
 			TeacherID=ServletActionContext.getRequest().getParameter("TeacherId");
 			StudentID=ServletActionContext.getRequest().getParameter("StudentId");
+			System.out.println("ÑûÇë="+TeacherID);
 			setId(Integer.parseInt(TeacherID));
 			
 			String teacher_id_list = null;
@@ -42,6 +43,9 @@ public class TeacherInviteAction {
 				return "InviteFail";
 			else
 			{
+				String s="update student set  InvitStation="+1+" where id="+StudentID;
+				System.out.println(s);
+				db.executeUpdate(s);
 				Student = "select * from studentlist where id="+StudentID;
 				ResultSet Rs=db.executeQuery(Student);
 				if(Rs.next())
@@ -64,6 +68,7 @@ public class TeacherInviteAction {
 				}
 				Student = "update studentlist set teacherId = "+"'"+teacher_id_list+"' where id =" +StudentID; 
 				db.executeUpdate(Student);
+				
 					
 				return "Invite";
 			}

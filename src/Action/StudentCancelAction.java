@@ -95,7 +95,7 @@ public class StudentCancelAction {
 		Teacher = "update teacherlist set list = "+"'"+tc_list+"' ,"+"agreenum="+agree_n+" where id =" +TeacherID; //Íê³É2
 		db.executeUpdate(Teacher);
 		DB d=new DB();
-		String td="update teacher set InviteStation="+1+" where id="+TeacherID+";";
+		String td="update teacher set ApplyStation="+1+" where id="+TeacherID+";";
 		d.executeUpdate(td);
 		return "Cancel";
 	}

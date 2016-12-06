@@ -75,6 +75,8 @@ public class StudentPageAction extends Student{
 			setEmail(r.getString("email"));
 			setSex(r.getString("sex"));
 			setTelephone(r.getString("telephone"));
+			setInvitStation(r.getString("InvitStation"));
+			setApplyStation(r.getString("ApplyStation"));
 		}
 		
 		s = "select * from studentlabel where id=" + getId();
@@ -106,6 +108,8 @@ public class StudentPageAction extends Student{
 			setEmail(r.getString("email"));
 			setSex(r.getString("sex"));
 			setTelephone(r.getString("telephone"));
+			setInvitStation(r.getString("InvitStation"));
+			setApplyStation(r.getString("ApplyStation"));
 		}
 		
 		HttpServletRequest request = ServletActionContext.getRequest();

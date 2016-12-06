@@ -52,6 +52,7 @@ public class MainAction {
 		 {
 			
 			 String TeacherName="select * from teacher where user_name="+"'"+getUserName()+"'";
+			 System.out.println(TeacherName);
 			 ResultSet                                 RsN=SQL.executeQuery(TeacherName);
 			 if(RsN.next())
 			 {
@@ -69,6 +70,7 @@ public class MainAction {
 	   else
 	    {
 				 String StudentName="select * from student where user_name="+"'"+getUserName()+"'";
+				 System.out.println(StudentName);
 				 ResultSet                                 RsN=SQL.executeQuery(StudentName);
 				 if(RsN.next())
 				 {

@@ -73,6 +73,8 @@ public class StudentSearchAction extends Student{
 			setEmail(r.getString("email"));
 			setSex(r.getString("sex"));
 			setTelephone(r.getString("telephone"));
+			setInvitStation(r.getString("InvitStation"));
+			setApplyStation(r.getString("ApplyStation"));
 		}
 		
 		s = "select academyname from department where academyid="+getAcademyId();

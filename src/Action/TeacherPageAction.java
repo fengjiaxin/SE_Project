@@ -107,6 +107,7 @@ public class TeacherPageAction extends Teacher{
 			setEmail(r.getString("email"));
 			setSex(r.getString("sex"));
 			setTelephone(r.getString("telephone"));
+			setApplyStation(r.getString("ApplyStation"));
 		}
 		HttpServletRequest request = ServletActionContext.getRequest();
     	request.setAttribute("Id", getId());

@@ -28,6 +28,7 @@ public class toTeacherEditAction extends Teacher {
 			setEmail(r2.getString("email"));
 			setSex(r2.getString("sex"));
 			setTelephone(r2.getString("telephone"));
+			setApplyStation(r2.getString("ApplyStation"));
 		}
 		HttpServletRequest request = ServletActionContext.getRequest();
 		request.setAttribute("Id ", getId());
