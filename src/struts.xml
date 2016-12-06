@@ -141,6 +141,11 @@
        	<action name="studentedit" class="Action.StudentEditAction" method="excute">
        		<result name="EditSuccess" type="redirectAction">/studentpagedisplay.action?Id=${Id}</result>
        	</action>
+       	
+       	<action name="toTeacherEdit" class="Action.toTeacherEditAction" method="excute">
+       		<result name="toTeacherEdit">/TeacherEdit.jsp</result>
+       	</action>
+       	
     </package>
 
 

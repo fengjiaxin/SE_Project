@@ -21,7 +21,15 @@ public class StudentSearchAction extends Student{
 	private Map<Integer,List<Major>> Mymap;
 	
 	private List<Academy>Mylist;
-
+	private String TeacherName;
+	public String getTeacherName() {
+		return this.TeacherName;
+	}
+	
+	public void setTeacherName(String TeacherName) {
+		this.TeacherName = TeacherName;
+	}
+	
 	public int getAcademyId() {
 		return AcademyId;
 	}
@@ -88,10 +96,16 @@ public class StudentSearchAction extends Student{
 			 r = mydb.executeQuery(sels);
 			while(r.next())
 			{
-				Teacher findteacher = new Teacher();
 				int teaid = r.getInt("id");
-				String res = r.getString("research");
 				String selname = "select name from teacher where id="+teaid;
+				
+				if(!TeacherName.matches("\\s*"))
+				{
+					selname = "select * from teacher where id="+teaid+" and name='"+TeacherName+"'";
+				}
+				
+				Teacher findteacher = new Teacher();					
+				String res = r.getString("research");				
 				System.out.println(selname);
 				ResultSet nR = mydb2.executeQuery(selname);
 				if(nR.next())
@@ -102,7 +116,6 @@ public class StudentSearchAction extends Student{
 					findteacher.setResearch(res);
 					TeacherlList.add(findteacher);
 				}
-				
 			}
 		}
 		HttpServletRequest request = ServletActionContext.getRequest();

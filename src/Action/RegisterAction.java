@@ -136,7 +136,9 @@ public class RegisterAction {
 				                                             +"'"+getAge()+"'"+","
 				                                             +"'"+getTelephone()+"'"+","
 				                                             +"'"+getEmail()+"',"
-				                                             +0+","+0+","+0
+				                                             +0+","
+				                                             +0+","
+				                                             +0
 			                                        +")";
 			    try
 				{
@@ -149,7 +151,7 @@ public class RegisterAction {
 				    {
 				    	int id = R.getInt("id");
 				    	DB SDB=new DB();
-				    	String S="insert into studentlist values("+id+","+"null"+","+0+");";
+				    	String S="insert into studentlist values("+id+","+"null"+","+0+",null);";
 				    	SDB.executeUpdate(S);
 				    	
 				    	s = "insert into studentlabel values("+id+","
@@ -193,7 +195,8 @@ public class RegisterAction {
 										                     +"'"+getAge()+"'"+","
 										                     +"'"+getTelephone()+"'"+","
 										                     +"'"+getEmail()+"',"
-										                     +0+","+0
+										                     +0+","
+										                     +0
                                                     +");";
 				try
 				{
