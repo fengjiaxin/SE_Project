@@ -43,6 +43,7 @@ public class StudentListAction extends Student{
 	
 	public String listdisplay() throws Exception
 	{
+		String t="update student set ApplyStation="+0+" where id="+getId();
 		Map<String,String> StatusMap = new HashMap<String,String>();
 		StatusMap.put("D", "Д§ЖЈ");
 		StatusMap.put("T", "ЭЌвт");
@@ -51,6 +52,7 @@ public class StudentListAction extends Student{
 		List<ApplyTeacher>TeacherList = new ArrayList<ApplyTeacher>();
 		
 		DB mydb = new DB();
+		mydb.executeUpdate(t);
 		String s="select * from student where id="+getId();
 		ResultSet r = mydb.executeQuery(s);
 		if(r.next())

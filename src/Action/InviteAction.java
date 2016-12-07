@@ -18,9 +18,12 @@ public class InviteAction extends Student{
 	
 	public String InviteListDisplay() throws Exception
 	{
+		String t="update student set InvitStation="+0+" where id="+getId();
+		System.out.println(t);
 		List<InviteTeacher>TeacherList = new ArrayList<InviteTeacher>();
 		
 		DB mydb = new DB();
+		mydb.executeUpdate(t);
 		String s="select * from student where id="+getId();
 		ResultSet r = mydb.executeQuery(s);
 		if(r.next())

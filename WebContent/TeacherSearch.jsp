@@ -65,7 +65,7 @@
 			<img src="<%=request.getContextPath()%>/css/search2.png">
 			<s:form action="TeacherInquiry" method="post">
 				    学院：<s:select theme="simple" name="AcademyId" list="Mylist" listValue="Name" listKey="id"></s:select>
-				    	<s:textfield theme="simple" class="nameinput" name="StudentName" value="输入学生姓名，空则只按学院查询" onfocus="if(value=='输入学生姓名，空则只按学院查询') {value=''}"></s:textfield>
+				    	<s:textfield theme="simple" class="nameinput" name="TeacherName" value="输入学生姓名，空则只按学院查询" onfocus="if(value=='输入学生姓名，空则只按学院查询') {value=''}"></s:textfield>
 				    <s:textfield theme="simple" name="Id" type="hidden" value="%{#request.Id}"></s:textfield>
 				    <s:submit theme="simple" class="btnsubmit" value="查询"></s:submit>
 			</s:form>
