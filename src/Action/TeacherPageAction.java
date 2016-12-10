@@ -15,6 +15,13 @@ import Data.Academy;
 import Data.Teacher;
 import Data.Research;
 public class TeacherPageAction extends Teacher{
+	//以下这5个私有变量是老师对学生的要求,每一行后面的注释代表前台传过来的值
+	private String EnglishLevel;//N,L,Y
+	private String Grade;//90,80,70,60
+	private String Award;//I,C,P,N
+	private String SexS;//M,W,N
+	private String ExperienceS;//Y,N
+	
 	private Map<Integer,List<Research>> Mymap;
 	
 	private List<Academy>Mylist;
@@ -92,6 +99,8 @@ public class TeacherPageAction extends Teacher{
 			setNeedNum(r.getInt("neednum"));
 			setNeeds(r.getString("needs"));
 		}
+		HttpServletRequest request = ServletActionContext.getRequest();
+    	request.setAttribute("Id", getId());
 		return "Display";
 	}
 	
@@ -102,12 +111,30 @@ public class TeacherPageAction extends Teacher{
 		ResultSet r=mydb.executeQuery(s);
 		if(r.next())
 		{
+			
 			setName(r.getString("name"));
 			setAge(r.getString("age"));
 			setEmail(r.getString("email"));
 			setSex(r.getString("sex"));
 			setTelephone(r.getString("telephone"));
 			setApplyStation(r.getString("ApplyStation"));
+		}
+		DB mysl=new DB();
+		String sl="select* from teacherlabel where id="+getId();
+		ResultSet rsn=mysl.executeQuery(sl);
+		if(rsn.next())//为编辑页面做准备，设置默认值，也就是用户上次填写过的值
+		{
+			setArticle(rsn.getString("article"));
+			setExperience(rsn.getString("experience"));
+			setHonor(rsn.getString("honor"));
+			setNeedNum(rsn.getInt("neednum"));
+			String need=rsn.getString("needs");
+			String needarry[]=need.split(";");
+			setGrade(needarry[0]);
+			setExperienceS(needarry[1]);
+			setAward(needarry[2]);
+			setEnglishLevel(needarry[3]);
+			setSexS(needarry[4]);
 		}
 		HttpServletRequest request = ServletActionContext.getRequest();
     	request.setAttribute("Id", getId());
@@ -119,6 +146,8 @@ public class TeacherPageAction extends Teacher{
 		
 		DB mydb = new DB();
 		String staca = "select * from department where academyid="+getAcademy();
+		String  Need=getGrade()+";"+getExperienceS()+";"+getAward()+";"+getEnglishLevel()+";"+getSexS();
+		setNeeds(Need);
 		String aca="";
 		String SResearch="";
 		String Researchs[];
@@ -143,5 +172,45 @@ public class TeacherPageAction extends Teacher{
 											" where id="+getId()+";";
 		mydb.executeUpdate(s);
 		return "Update";
+	}
+
+	public String getEnglishLevel() {
+		return EnglishLevel;
+	}
+
+	public void setEnglishLevel(String englishLevel) {
+		EnglishLevel = englishLevel;
+	}
+
+	public String getGrade() {
+		return Grade;
+	}
+
+	public void setGrade(String grade) {
+		Grade = grade;
+	}
+
+	public String getAward() {
+		return Award;
+	}
+
+	public void setAward(String award) {
+		Award = award;
+	}
+
+	public String getSexS() {
+		return SexS;
+	}
+
+	public void setSexS(String sexS) {
+		SexS = sexS;
+	}
+
+	public String getExperienceS() {
+		return ExperienceS;
+	}
+
+	public void setExperienceS(String experienceS) {
+		ExperienceS = experienceS;
 	}
 }

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -76,12 +76,53 @@
 						         listKey="Id" listValue="Name"
 						         doubleListKey="Id" doubleListValue="Name" 
 						         >
-				 </s:doubleselect>
-					 <s:textfield name="Article" label="论文："></s:textfield>
-					 <s:textfield name="Experience" label="经历："></s:textfield>
-					 <s:textfield name="Honor" label="荣誉："></s:textfield>
-					 <s:textfield name="NeedNum" label="招生人数："></s:textfield>
-					 <s:textfield name="Needs" label="招生需求："></s:textfield>
+				 </s:doubleselect> 
+
+					 <s:textfield name="Article" value="%{Article}" label="论文："></s:textfield>
+					 <s:textfield name="Experience" value="%{Experience}" label="经历："></s:textfield>
+					 <s:textfield name="Honor" value="%{Honor}" label="荣誉："></s:textfield>
+					 <s:textfield name="NeedNum" value="%{NeedNum}" label="招生人数："></s:textfield><br>
+					  <div>
+					 <table class="imagetable">
+					 <tr>
+					 <th>招生需求</th><th></th>
+					 </tr>
+					 <tr>
+					 <td>学分绩</td><td><s:select Name="Grade" list="#{'90':'>=90','80':'>=80','70':'>=70','60':'无要求'}" value="%{Grade}" >
+					                         
+				                      </s:select>
+				                  </td>
+				     </tr>
+				     <tr>
+				     <td>项目经验</td><td><s:select  Name="ExperienceS" list="#{'Y':'有要求','N':'无要求'}" value="%{ExperienceS}">
+				                                      
+				                       </s:select>
+				                   </td>
+				     </tr>
+				     <tr>
+				     <td>获奖等级</td><td><s:select  Name="Award" list="#{'I':'国际级','C':'国家级','P':'省级','N':'无'}" value="%{Award}">
+				                                    
+				                       </s:select>
+				                    </td>
+				     </tr>
+				     <tr>
+				     <td>英语水平</td><td><s:select Name="EnglishLevel" list="#{'N':'无','L':'英语6级','Y':'雅思或托福'}" value="%{EnglishLevel}">
+				                                     
+                                                      
+                                       </s:select>
+                                   </td>
+                      </tr>
+                     <tr>
+                     <td>性别要求</td><td><s:select  Name="SexS" list="#{'M':'男','W':'女','N':'无'}" value="%{SexS}">
+                                                      
+				                       </s:select>
+				                    </td>
+				     </tr>
+                     </table>
+					
+					   
+                         
+					 </div>
 				     <s:submit value="更新"></s:submit>
 		   </s:form>
 	</div>

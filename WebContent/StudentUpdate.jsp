@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -87,35 +87,54 @@
 		</div>
 	</div>
 	
-	<div class="Contentbox">
-				<s:form class="formsty" action="StudentUpdate" method="post" theme="simple">
-				<s:textfield name="Id" type="hidden" value="%{#request.Id}" theme="simple"></s:textfield>
-				
-			     	<h3>基本信息</h3>
-			     	请选择学院和专业：<s:doubleselect theme="simple" name="Academy" doubleName="Major"
+<div class="Contentbox">
+	         <s:form class="formsty" action="StudentUpdate" method="post" theme="simple">
+			 <s:textfield name="Id" type="hidden" value="%{#request.Id}" theme="simple"></s:textfield>
+	         <div>
+				            民族:<s:textfield name="Nation"  value="%{Nation}" theme="simple"></s:textfield><br>
+			                         籍贯:<s:textfield name="NativaPlace" value="%{NativaPlace}" theme="simple"></s:textfield><br>
+	         </div>
+	         <div class=nobr>
+	         <h4>请选择学院和专业：</h4>
+			 <s:doubleselect theme="simple" name="Academy"  doubleName="Major"
 					         list="Mylist" doubleList="Mymap.get(top.Id)"
 					         listKey="Id" listValue="Name"
-					         doubleListKey="Id" doubleListValue="Name" 
+					         doubleListKey="Id" doubleListValue="Name">
+		     </s:doubleselect><br>
+		     <h4>英语级别</h4>
+				        <s:select  Name="EnglishLevel"  list="#{'N':'英语4级','L':英语6级,'Y':'雅思或托福'}" value="%{EnglishLevel}" >
+				        </s:select>
+				      
+		
+	         </div>
+	         <div>
+	         <h3>本科平均学分绩</h3>
+			 <s:textfield name="Point" value="%{Point}" label="分数" theme="simple"></s:textfield>
+	         </div>
+	         <div>
+	                                 是否获得过国际级奖项： <s:radio list="#{'1':'是','0':'否'}" name="HI" value="%{HI}" ></s:radio>
+		                   备注:<s:textarea name="RemarkI" value="%{RemarkI}"  theme="simple"></s:textarea><br>
+                                               是否获得过国家级奖项：  <s:radio list="#{'1':'是','0':'否'}" name="HC" value="%{HC}"></s:radio>
+                                               备注:<s:textarea name="RemarkC" value="%{RemarkC}" theme="simple"></s:textarea><br> 
+                                               是否获得过省级奖项 ：    <s:radio list="#{'1':'是','0':'否'}" name="HP" value="%{HP}" ></s:radio>
+			     备注:<s:textarea name="RemarkP" value="%{RemarkP}" theme="simple"></s:textarea><br>
+	         </div>
+		   <div class=nobr>
+			 <h3>请根据所选学院来选择研究方向</h3>
+		    <s:doubleselect theme="simple" name="Academy1" listValue="%{Academy1}"  doubleName="Research" doubleListValue="%{Research}"
+    				         list="Mylist1" doubleList="Mysearch.get(top.Id)"
+					         listKey="Id" listValue="Name"
+					         doubleListKey="Id" doubleListValue="Name"
 					         >
 				 	</s:doubleselect><br>
-				    民族:<s:textfield name="Nation"  theme="simple"></s:textfield><br>
-
-				    籍贯:<s:textfield name="NativaPlace" theme="simple"></s:textfield><br>
-			    
-			    
-			    
-			    	<h3>本科成绩</h3>
-				 	分数:<s:textfield name="Point" label="分数" theme="simple"></s:textfield>
 				
-				
-				
-					<h3>其它</h3>
-					 兴趣方向:<s:textfield name="Interest"  theme="simple"></s:textfield><br>
-					 荣誉:<s:textarea name="Honor"  theme="simple"></s:textarea><br>
-					 经历:<s:textarea name="Experience"  theme="simple"></s:textarea><br>
-				 
+				</div>
+				<div>
+				 经历:<s:textarea name="Experience"  value="%{Experience}" theme="simple"></s:textarea><br>
+				</div>    
 		         <s:submit value="更新"></s:submit>
 		     </s:form>
 	</div>
 </body>
+</html>
 </html>
