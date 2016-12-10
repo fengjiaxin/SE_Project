@@ -52,11 +52,20 @@
 			  </s:url>>查询信息</a>
 		
 		
-		<a class="nav-btn" href=<s:url action="SystemreCommendation">
+		<a class="nav-btn" href=
+			<s:url action="TeacherRecommendation">
+			<s:param name="Id" value="getId()"></s:param>
 			 </s:url>>系统推荐</a>
-		<a class="nav-btn" href=<s:url action="TeacherList">
-		      <s:param name="Id" value="getId()"></s:param>
-			 </s:url>>申请列表</a>
+		<s:if test="getApplyStation()=='0'.toString()">
+			<a class="nav-btn" href=<s:url action="TeacherList">
+		        <s:param name="Id" value="getId()"></s:param>
+			    </s:url>>申请列表</a>
+		</s:if>
+		<s:else> 
+		        <a class="nav-btn" href=<s:url action="TeacherList">
+			    <s:param name="Id" value="getId()"></s:param>
+				</s:url>><span title="申请列表有更新">申请列表<span style="color:red;font-size: 15px">！</span></span></a>
+		</s:else>
 		</div>
 	</div>
 	
@@ -65,8 +74,8 @@
 			<img src="<%=request.getContextPath()%>/css/search2.png">
 			<s:form action="TeacherInquiry" method="post">
 				    学院：<s:select theme="simple" name="AcademyId" list="Mylist" listValue="Name" listKey="id"></s:select>
-				    	<s:textfield theme="simple" class="nameinput" name="TeacherName" value="输入学生姓名，空则只按学院查询" onfocus="if(value=='输入学生姓名，空则只按学院查询') {value=''}"></s:textfield>
-				    <s:textfield theme="simple" name="Id" type="hidden" value="%{#request.Id}"></s:textfield>
+				    	<s:textfield theme="simple" class="nameinput" name="StudentName" value="输入学生姓名，空则只按学院查询" onfocus="if(value=='输入学生姓名，空则只按学院查询') {value=''}"></s:textfield>
+				    	<s:textfield theme="simple" name="Id" type="hidden" value="%{#request.Id}"></s:textfield>
 				    <s:submit theme="simple" class="btnsubmit" value="查询"></s:submit>
 			</s:form>
 		</div>

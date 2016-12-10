@@ -7,27 +7,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Teacher System</title>
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/css/System.css"/>
-<script type="text/javascript">
- function checkpwd(){
-  var p1=document.form1.Password.value;//获取密码框的值
-  var p2=document.form1.Password2.value;//获取重新输入的密码值
-  if(p1==""){
-   alert("请输入密码！");//检测到密码为空，提醒输入//
-   document.form1.Password.focus();//焦点放到密码框
-   return false;//退出检测函数
-  }
-   if(p1!= p2)
-   {//判断两次输入的值是否一致，不一致则显示错误信息
-	   document.getElementById("msg").innerHTML="两次输入密码不一致，请重新输入";//在div显示错误信息
-	   return false;
-	}
-   else
-  {
-   //密码一致，可以继续下一步操作 
-  }
-	 
-  }
-</script>
 </head>
 <body class="systemback">
 	<div class="top" style="display:block;">
@@ -35,10 +14,9 @@
 			<div class="topright">
 				<div class="welcome">
 				<br>您好！  <s:property value="Name"  default="ls"/>老师<br>
-	    		
-	    		电话：<s:property value="Telephone"  default="435455"/><br>
+	    
 				邮箱：<s:property value="Email"  default="344545"/>
-				
+				电话：<s:property value="Telephone"  default="435455"/>
 				
 				</div>
 				<div id="taskbar_right">
@@ -77,7 +55,6 @@
 			<s:url action="TeacherRecommendation">
 			<s:param name="Id" value="getId()"></s:param>
 			 </s:url>>系统推荐</a>
-		      
 		<s:if test="getApplyStation()=='0'.toString()">
 			<a class="nav-btn" href=<s:url action="TeacherList">
 		        <s:param name="Id" value="getId()"></s:param>
@@ -88,29 +65,64 @@
 			    <s:param name="Id" value="getId()"></s:param>
 				</s:url>><span title="申请列表有更新">申请列表<span style="color:red;font-size: 15px">！</span></span></a>
 		</s:else>
-		      
-			
 		</div>
 	</div>
 	
-	
 	<div class="Contentbox">
-		<div class="editform">
-			<s:form action="teacheredit" name="form1" method="post">
-				<s:textfield name="Id" type="hidden" value="%{#request.Id}"></s:textfield>
-				<s:textfield type="text" name="UserName" label="用户名：" value="%{UsrName}" readonly="true"></s:textfield>
+		<table border="1" width="50%" cellpadding="0" cellspacing="0" align="center">  
+			<tr style="background-color: #D1E9E9">
+				<td align="center">学生姓名</td>
+				<td align="center">性别</td>
+				<td align="center">专业</td>
+				<td align="center">学分绩</td>			
+				<td align="center">经历</td>
+				<td align="center">获奖荣誉</td>				
+				<td align="center">英语等级</td>		
+				<td align="center">系统评分</td>		
+			</tr>  
+			<s:iterator  value="#request.StudentList">
+				<tr>
+				<td class="name" align="center">
+				<a href=<s:url action="StudentDetail.action">
+					<s:param name="StudentId" value="Id"></s:param>
+					<s:param name="TeacherId" value="%{#request.Id}"></s:param>
+				</s:url>
+				>
+				<s:property value="Name"/>
+				</a>
+				</td>	
 				
-				<s:textfield name="Name" value="%{Name}" label="真实姓名："></s:textfield>
-				<s:radio list="#{'1':'男','0':'女'}" name="Sex" value='1' label="性别："></s:radio>
-				<s:textfield name="Age" value="%{Age}" label="年龄："></s:textfield>
-				<s:textfield name="Telephone" value="%{Telephone}" label="手机号："></s:textfield>
-				<s:textfield name="Email" value="%{Email}" label="邮箱："></s:textfield>
-				<s:textfield type="password" name="Password" value="%{Password}" label="密码："></s:textfield>
-				<s:textfield type="password" name="Password2" label="确认密码：" onchange="checkpwd()" ></s:textfield>
-				<s:submit value="编辑"></s:submit>
-			</s:form>
-		</div>
-		<div class="msgsty" id="msg"></div>
+				<td align="center">					
+						<s:property value="Sex"/>
+				</td>
+				
+				<td align="center">					
+						<s:property value="Academy"/>
+				</td>				
+				
+				<td align="center">					
+						<s:property value="Point"/>
+				</td>
+				
+				<td align="center">					
+						<s:property value="Experience"/>
+				</td>
+				
+				<td align="center">					
+						<s:property value="Honor"/>
+				</td>	
+				
+				<td align="center">					
+						<s:property value="English"/>
+				</td>	
+				
+				<td align="center">					
+						<s:property value="SystemPoint"/>
+				</td>	
+											
+				</tr>
+           </s:iterator> 
+       </table>
 	</div>
 </body>
 </html>
