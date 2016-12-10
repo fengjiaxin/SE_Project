@@ -15,14 +15,13 @@
 				<div class="welcome">
 				<br>您好！  <s:property value="Name"  default="ls"/>同学<br>
 	    
-	    		电话：<s:property value="Telephone"  default="435455"/><br>
+				电话：<s:property value="Telephone"  default="435455"/><br>
 				邮箱：<s:property value="Email"  default="344545"/>
-				
 				
 				</div>
 				<div id="taskbar_right">
 				
-				<a class="btnedit" href=<s:url value="toStudentEdit.action">
+				<a class="btnedit" href=<s:url value="studentpagedisplay.action">
 	    			<s:param name="Id" value="getId()"></s:param>
 	    			</s:url>>编辑
 				</a>
@@ -80,7 +79,6 @@
 				</s:url>><span title="邀请列表有更新">邀请列表<span style="color:red;font-size: 15px">！</span></span></a>
    		</s:else>
 
-			 
 		<a class="nav-btn" href=<s:url action="StudentChoosedTea">
 			 <s:param name="Id" value="getId()"></s:param>
 			 </s:url>>所选导师</a>
@@ -89,7 +87,38 @@
 	</div>
 	
 	<div class="Contentbox">
-		<div class="index_bg"></div>
+		<div class="list">
+	    <table border="1" width="100%" cellpadding="0" cellspacing="0" align="center">  
+			<tr style="background-color: #D1E9E9">
+				<td align="center">导师姓名</td>
+				<td align="center">研究方向</td>
+				<td align="center">招生需求</td>
+				<td align="center">系统评分</td>
+			</tr>  
+			<s:iterator value="#request.TeacherList"> 
+				<tr>
+					<td class="name" align="center">
+						<a href=
+							<s:url value="TeacherDetail.action">
+								<s:param name="TeacherId" value="Id"/>
+								<s:param name="StudentId" value="%{#request.Id}"/>
+							</s:url>>
+							<s:property value="Name"/>
+							</a>
+					</td>
+					<td align="center">					
+							<s:property value="Research"/>
+					</td>
+					<td align="center">					
+							<s:property value="Needs"/>
+					</td>
+					<td align="center">					
+							<s:property value="SysPoint"/>
+					</td>
+				</tr>
+			</s:iterator>
+		</table>
+	    </div>
 	</div>
 </body>
 </html>

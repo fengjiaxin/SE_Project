@@ -51,28 +51,38 @@
 			  </s:url>>查询信息</a>
 		
 		
-		<a class="nav-btn" href=<s:url action="SystemreCommendation">
+		<a class="nav-btn" href=<s:url action="StudentRecommendation">
+			 <s:param name="Id" value="getId()"></s:param>
 			 </s:url>>系统推荐</a>
+			 
+			 
 		<s:if test="getApplyStation()=='0'.toString()">
 			    <a class="nav-btn" href=<s:url action="StudentList">
 		        <s:param name="Id" value="getId()"></s:param>
 			    </s:url>>申请列表</a>
-				  </s:if>
-				  <s:else> 
+		</s:if>
+		<s:else> 
 		        <a class="nav-btn" href=<s:url action="StudentList">
 			    <s:param name="Id" value="getId()"></s:param>
-				</s:url>><span title="申请列表有更新">申请列表<img src="<%=request.getContextPath()%>/css/1.png"  height="15" width="15"/></span></a>
-	</s:else>
-	<s:if test="getInvitStation()=='0'.toString()">
+				</s:url>><span title="申请列表有更新">申请列表<span style="color:red;font-size: 15px">！</span></span></a>
+		</s:else>
+
+			
+		<s:if test="getInviteStation()=='0'.toString()">
 			    <a class="nav-btn" href=<s:url action="StudentInviteList">
 		        <s:param name="Id" value="getId()"></s:param>
 			    </s:url>>邀请列表</a>
-				  </s:if>
-				  <s:else> 
+		</s:if>
+		<s:else> 
 		        <a class="nav-btn" href=<s:url action="StudentInviteList">
 			    <s:param name="Id" value="getId()"></s:param>
-				</s:url>><span title="邀请列表有更新">邀请列表<img src="<%=request.getContextPath()%>/css/1.png"  height="15" width="15"/></span></a>
-   </s:else>
+				</s:url>><span title="邀请列表有更新">邀请列表<span style="color:red;font-size: 15px">！</span></span></a>
+   		</s:else>
+
+		<a class="nav-btn" href=<s:url action="StudentChoosedTea">
+			 <s:param name="Id" value="getId()"></s:param>
+			 </s:url>>所选导师</a>	 
+			 
 		</div>
 	</div>
 	

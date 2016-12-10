@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Student System</title>
+<title>Teacher System</title>
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/css/System.css"/>
 </head>
 <body class="systemback">
@@ -13,21 +13,20 @@
 		<div class="logo">
 			<div class="topright">
 				<div class="welcome">
-				<br>您好！  <s:property value="Name"  default="ls"/>同学<br>
+				<br>您好！  <s:property value="Name"  default="ls"/>老师<br>
 	    
-	    		电话：<s:property value="Telephone"  default="435455"/><br>
+				电话：<s:property value="Telephone"  default="435455"/><br>
 				邮箱：<s:property value="Email"  default="344545"/>
-				
 				
 				</div>
 				<div id="taskbar_right">
 				
-				<a class="btnedit" href=<s:url value="toStudentEdit.action">
+				<a class="btnedit" href=<s:url value="toTeacherEdit.action">
 	    			<s:param name="Id" value="getId()"></s:param>
 	    			</s:url>>编辑
 				</a>
 				
-				<a class="btnhome" href=<s:url value="studentpagedisplay.action">
+				<a class="btnhome" href=<s:url value="teacherpagedisplay.action">
 	    			<s:param name="Id" value="getId()"></s:param>
 	    			</s:url>>主页
 				</a>
@@ -42,54 +41,76 @@
 	<div class="top-nav">
 		<div class="navlist">
 		<a class="nav-btn" href=
-		      <s:url action="StudentCompletePersonalInformation">
+		      <s:url action="TeacherCompletePersonalInformation">
 		      <s:param name="Id" value="getId()"></s:param>
 			  </s:url>>信息完善</a>
 		
 		<a class="nav-btn" href=
-		      <s:url action="toStudentInquiry">
+		      <s:url action="toTeacherInquiry">
 		      <s:param name="Id" value="getId()"></s:param>
 			  </s:url>>查询信息</a>
 		
 		
-		<a class="nav-btn" href=<s:url action="StudentRecommendation">
-			 <s:param name="Id" value="getId()"></s:param>
+		<a class="nav-btn" href=<s:url action="SystemreCommendation">
 			 </s:url>>系统推荐</a>
-			 
-			 
 		<s:if test="getApplyStation()=='0'.toString()">
-			    <a class="nav-btn" href=<s:url action="StudentList">
+			<a class="nav-btn" href=<s:url action="TeacherList">
 		        <s:param name="Id" value="getId()"></s:param>
 			    </s:url>>申请列表</a>
 		</s:if>
 		<s:else> 
-		        <a class="nav-btn" href=<s:url action="StudentList">
+		        <a class="nav-btn" href=<s:url action="TeacherList">
 			    <s:param name="Id" value="getId()"></s:param>
 				</s:url>><span title="申请列表有更新">申请列表<span style="color:red;font-size: 15px">！</span></span></a>
 		</s:else>
-
-			
-		<s:if test="getInviteStation()=='0'.toString()">
-			    <a class="nav-btn" href=<s:url action="StudentInviteList">
-		        <s:param name="Id" value="getId()"></s:param>
-			    </s:url>>邀请列表</a>
-		</s:if>
-		<s:else> 
-		        <a class="nav-btn" href=<s:url action="StudentInviteList">
-			    <s:param name="Id" value="getId()"></s:param>
-				</s:url>><span title="邀请列表有更新">邀请列表<span style="color:red;font-size: 15px">！</span></span></a>
-   		</s:else>
-
-			 
-		<a class="nav-btn" href=<s:url action="StudentChoosedTea">
+		
+		
+		<a class="nav-btn" href=<s:url action="TeacherAffirmedStu">
 			 <s:param name="Id" value="getId()"></s:param>
-			 </s:url>>所选导师</a>
-			 
+			 </s:url>>确定学生</a>
+		
 		</div>
 	</div>
 	
 	<div class="Contentbox">
-		<div class="index_bg"></div>
+		<table border="1" width="50%" cellpadding="0" cellspacing="0" align="center">  
+			<tr style="background-color: #D1E9E9">
+				<td align="center">学生姓名</td>
+				<td align="center">学生学院</td>
+				<td align="center">性别</td>
+				<td align="center">电话</td>
+				<td align="center">邮箱</td>
+				
+			</tr>  
+			<s:iterator  value="#request.StudentList">
+				<tr>
+				<td class="name" align="center">
+				<a href=<s:url action="StudentDetail.action">
+					<s:param name="StudentId" value="Id"></s:param>
+					<s:param name="TeacherId" value="%{#request.Id}"></s:param>
+				</s:url>
+				>
+				<s:property value="Name"/>
+				</a>
+				</td>
+				<td align="center">					
+						<s:property value="Academy"/>
+				</td>
+				
+				<td align="center">					
+						<s:property value="Sex"/>
+				</td>
+				
+				<td align="center">					
+						<s:property value="Telephone"/>
+				</td>
+				
+				<td align="center">					
+						<s:property value="Email"/>
+				</td>
+				</tr>
+           </s:iterator> 
+       </table>
 	</div>
 </body>
 </html>
