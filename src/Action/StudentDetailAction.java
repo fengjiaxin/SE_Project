@@ -12,13 +12,15 @@ import DBcon.DB;
 
 public class StudentDetailAction {
 	private Student student;
+	
+	
 	public  Student getStudent()
 	{
 		return this.student;
 	}
-	public  void setStudent(Student teacher)
+	public  void setStudent(Student student)
 	{
-		this.student=teacher;
+		this.student=student;
 	}
 	
 	
@@ -32,6 +34,7 @@ public class StudentDetailAction {
 		StudentID=ServletActionContext.getRequest().getParameter("StudentId");
 		DB mydb = new DB();
 		String str="select* from student where id="+StudentID;
+		System.out.println(str);
 		ResultSet rsn = mydb.executeQuery(str);
 		if(rsn.next())
 		{
@@ -40,6 +43,8 @@ public class StudentDetailAction {
 			student.setAge(rsn.getString("age"));
 			student.setTelephone(rsn.getString("telephone"));
 			student.setEmail(rsn.getString("email"));
+			student.setStatus(rsn.getString("status"));
+			System.out.println(student.getStatus());
 		}
 		DB mydb1 = new DB();
 		String str1="select* from studentlabel where id="+StudentID;
@@ -50,7 +55,17 @@ public class StudentDetailAction {
 			student.setAcademy(rsn1.getString("academy"));
 			student.setMajor(rsn1.getString("interest"));
 			student.setExperience(rsn1.getString("experience"));
-			student.setHonor(rsn1.getString("honor"));
+			String hon = rsn1.getString("honor");
+			String change_hon = "";
+			String[] honlist = hon.split(";");
+			if(!honlist[0].equals("нч"))
+				change_hon += honlist[0];
+			if(!honlist[1].equals("нч"))
+				change_hon += honlist[1];
+			if(!honlist[2].equals("нч"))
+				change_hon += honlist[2];			
+            System.out.println(change_hon);
+			student.setHonor(change_hon);
 		}
 		HttpServletRequest request = ServletActionContext.getRequest();
 		request.setAttribute("TeacherId", TeacherID);
