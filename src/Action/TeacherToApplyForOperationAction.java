@@ -1,5 +1,6 @@
 package Action;
 import DBcon.DB;
+import Data.Mail;
 
 import java.sql.ResultSet;
 
@@ -25,6 +26,38 @@ public class TeacherToApplyForOperationAction {
 		int aggrenum=0;
 		SetId(TeacherID);
 		DB ltdb=new DB();
+		DB db1=new DB();
+		
+		//           向导师发送邮件提醒
+		String tea = "select * from teacher where id = " + TeacherID;
+		String stu = "select * from student where id = " + StudentID;
+		String teacherName = null;
+		String studentEmail = null;
+		ResultSet r1=db1.executeQuery(tea);
+		
+		if(r1.next())
+		{
+			teacherName = r1.getString("name");
+		}
+		ResultSet r2=db1.executeQuery(stu);
+		if(r2.next())
+		{
+			studentEmail = r2.getString("email");
+		}						
+		
+        String smtp = "smtp.126.com";// qq服务器
+        String from = "taiyangaaagzy@126.com";// 邮件显示名称
+        String to = studentEmail;// 收件人的邮件地址，必须是真实地址
+        String copyto = "taiyangaaagzy@126.com";// 抄送人邮件地址
+        String subject = "考研系统提醒";// 邮件标题
+        String content = "hello!" + teacherName + "导师" + "同意了你的申请";// 邮件内容
+        String username = "taiyangaaagzy";// 发件人真实的账户名
+        String password = "110220qqaa";// 发件人密码
+        System.out.println(content);
+        System.out.println(studentEmail);
+        Mail.sendAndCc(smtp, from, to, copyto, subject, content, username, password);
+        
+        //
 		String t="select* from teacherlabel where id="+TeacherID;
 		ResultSet rlsn=ltdb.executeQuery(t);
 		if(rlsn.next())
@@ -78,7 +111,7 @@ public class TeacherToApplyForOperationAction {
 			aggrenum++;
 			String s = "update teacherlist set list="+"'"+string+"'"+",num="+num+",agreenum="+aggrenum+ " where id="+TeacherID+";";
 			tdb.executeUpdate(s);
-			System.out.println(s);
+			
 		}
 		    DB sdb=new DB();
 			String Sstr="select* from studentlist where id="+StudentID;
@@ -123,8 +156,9 @@ public class TeacherToApplyForOperationAction {
 				DB d=new DB();
 				String td="update student set ApplyStation="+1+" where id="+StudentID+";";
 				d.executeUpdate(td);
-	    }         
-		    return "Agree";
+	   }
+		
+			return "Agree";
 	}
 	
 	
@@ -172,9 +206,6 @@ public class TeacherToApplyForOperationAction {
 			}
 			String s = "update studentlist set list="+"'"+string+"'"+" where id="+StudentID+";";
 			sdb.executeUpdate(s);
-			DB d=new DB();
-			String td="update student set ApplyStation="+1+" where id="+StudentID+";";
-			d.executeUpdate(td);
 		}
 		
 		DB tdb=new DB();
@@ -204,6 +235,9 @@ public class TeacherToApplyForOperationAction {
 			String s = "update teacherlist set list="+"'"+string+"'"+" where id="+TeacherID+";";
 			tdb.executeUpdate(s);
 		}
-		  return "Reject";
+		DB d=new DB();
+		String td="update student set ApplyStation="+1+" where id="+StudentID+";";
+		d.executeUpdate(td);
+		return "Reject";
 	 }
 }
